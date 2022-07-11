@@ -17,4 +17,19 @@ public class ProductServiceImpl implements ProductService {
     public Product save(Product product) throws ExecutionException, InterruptedException {
         return productRepository.save(product);
     }
+
+    @Override
+    public Product findById(String id) throws ExecutionException, InterruptedException {
+        return productRepository.findById(id);
+    }
+
+    @Override
+    public String deleteById(String id) throws ExecutionException, InterruptedException {
+        return productRepository.deleteById(id);
+    }
+
+    @Override
+    public Product updateById(Product dto) throws ExecutionException, InterruptedException {
+        return productRepository.updateById(dto);
+    }
 }
