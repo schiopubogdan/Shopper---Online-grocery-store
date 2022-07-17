@@ -6,6 +6,7 @@ import com.example.backend.service.ProductService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.List;
 import java.util.concurrent.ExecutionException;
 
 @Service
@@ -32,4 +33,10 @@ public class ProductServiceImpl implements ProductService {
     public Product updateById(Product dto) throws ExecutionException, InterruptedException {
         return productRepository.updateById(dto);
     }
+
+    @Override
+    public List<Product> findAll() throws ExecutionException, InterruptedException {
+        return productRepository.findAll();
+    }
+
 }

@@ -23,11 +23,11 @@ public class ProductController {
 
         return ResponseEntity.status(HttpStatus.OK).body(productService.findById(id));
     }
-//    @GetMapping
-//    public ResponseEntity get() throws ExecutionException,
-//            InterruptedException {
-//        return ResponseEntity.status(HttpStatus.OK).body(productService.findAll());
-//    }
+    @GetMapping
+    public ResponseEntity get() throws ExecutionException,
+            InterruptedException {
+        return ResponseEntity.status(HttpStatus.OK).body(productService.findAll());
+    }
 
     @PostMapping
     public ResponseEntity save(@RequestBody Product dto) throws ExecutionException,

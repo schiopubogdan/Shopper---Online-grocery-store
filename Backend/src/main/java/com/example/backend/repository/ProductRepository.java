@@ -47,15 +47,14 @@ public class ProductRepository {
                 dbFirestore.collection(COLLECTION_NAME).document(dto.getId()).set(dto);
         return dto;
     }
-//    public List<Product> findAll() throws ExecutionException, InterruptedException {
-//        List<Product> results = new ArrayList<>();
-//        Firestore dbFirestore = FirestoreClient.getFirestore();
-//        ApiFuture<QuerySnapshot> future = dbFirestore.collection(COLLECTION_NAME).get();
-//        List<QuerySnapshot> documents = future.get().getDocuments();
-//        for (QueryDocumentSnapshot document : documents) {
-//            results.add(document.toObject(Product.class));
-//        }
-//        return results;
-//    }
-
+    public List<Product> findAll() throws ExecutionException, InterruptedException {
+        List<Product> results = new ArrayList<>();
+        Firestore dbFirestore = FirestoreClient.getFirestore();
+        ApiFuture<QuerySnapshot> future = dbFirestore.collection(COLLECTION_NAME).get();
+        List<QueryDocumentSnapshot> documents = future.get().getDocuments();
+        for (QueryDocumentSnapshot document : documents) {
+            results.add(document.toObject(Product.class));
+        }
+        return results;
+    }
 }
