@@ -23,6 +23,7 @@ function LoginPage() {
         loginPassword
       );
       console.log(user);
+      //call de axios cu getUserRole by id cu
     } catch (error) {
       console.log(error.message);
     }
