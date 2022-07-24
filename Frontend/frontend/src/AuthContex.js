@@ -1,8 +1,13 @@
 import axios from "axios";
-import { createUserWithEmailAndPassword } from "firebase/auth";
+import {
+  createUserWithEmailAndPassword,
+  signInWithEmailAndPassword,
+  signOut,
+  sendPasswordResetEmail,
+} from "firebase/auth";
 import React, { useContext, useState, useEffect } from "react";
 import { auth } from "./firebase-config";
-
+import { useNavigate } from "react-router-dom";
 const AuthContex = React.createContext();
 
 export function useAuth() {
@@ -12,6 +17,7 @@ export function useAuth() {
 export function AuthProvider({ children }) {
   const [currentUser, setCurrentUser] = useState();
   const [loading, setLoading] = useState(true);
+  const navigate = useNavigate();
 
   async function register(email, password) {
     try {
@@ -49,6 +55,44 @@ export function AuthProvider({ children }) {
       }
     }
   }
+  async function login(email, password) {
+    try {
+      const user = await signInWithEmailAndPassword(auth, email, password);
+      console.log(user);
+      const userJSON = JSON.stringify(user);
+      var json = JSON.parse(userJSON);
+      let id = json.user.uid;
+      //call de axios cu getUserRole by id
+      axios
+        .get("http://localhost:8080/api/user/get", { params: { id: id } })
+        .then((res) => {
+          if (res.data !== "") {
+            console.log(res.data);
+            let role = res.data.role;
+            if (role === "client") {
+              navigate("/homeuser");
+            }
+            if (role === "admin") {
+              navigate("/homeadmin");
+            }
+          }
+        })
+        .catch((error) => {
+          console.log(error);
+        });
+    } catch (error) {
+      console.log(error.message);
+    }
+  }
+
+  async function logout() {
+    await signOut(auth);
+    navigate("/login");
+  }
+
+  async function resetPassword(email) {
+    await sendPasswordResetEmail(email);
+  }
   useEffect(() => {
     const unsubscribe = auth.onAuthStateChanged((user) => {
       setCurrentUser(user);
@@ -60,6 +104,9 @@ export function AuthProvider({ children }) {
   const value = {
     currentUser,
     register,
+    login,
+    logout,
+    resetPassword,
   };
   return (
     <AuthContex.Provider value={value}>
