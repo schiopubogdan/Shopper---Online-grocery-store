@@ -3,13 +3,13 @@ import React from "react";
 export default function Navbar() {
   return (
     <div>
-      <nav class="navbar navbar-expand-lg bg-light">
-        <div class="container-fluid">
-          <a class="navbar-brand fw-bold fs-4" href="#">
+      <nav className="navbar navbar-expand-lg bg-light">
+        <div className="container-fluid">
+          <a className="navbar-brand fw-bold fs-4" href="#">
             NUME SITE
           </a>
           <button
-            class="navbar-toggler"
+            className="navbar-toggler"
             type="button"
             data-bs-toggle="collapse"
             data-bs-target="#navbarSupportedContent"
@@ -17,18 +17,27 @@ export default function Navbar() {
             aria-expanded="false"
             aria-label="Toggle navigation"
           >
-            <span class="navbar-toggler-icon"></span>
+            <span className="navbar-toggler-icon"></span>
           </button>
-          <div class="collapse navbar-collapse" id="navbarSupportedContent">
-            <ul class="navbar-nav mx-auto mb-2 mb-lg-0">
-              <li class="nav-item">
-                <a class="nav-link active" aria-current="page" href="#">
+          <div className="collapse navbar-collapse" id="navbarSupportedContent">
+            <ul className="navbar-nav mx-auto mb-2 mb-lg-0">
+              <li className="nav-item">
+                <a className="nav-link active" aria-current="page" href="/home">
                   Home
                 </a>
               </li>
-              <li class="nav-item dropdown">
+              <li className="nav-item">
                 <a
-                  class="nav-link dropdown-toggle"
+                  className="nav-link active"
+                  aria-current="page"
+                  href="/products"
+                >
+                  Products
+                </a>
+              </li>
+              <li className="nav-item dropdown">
+                <a
+                  className="nav-link dropdown-toggle"
                   href="#"
                   role="button"
                   data-bs-toggle="dropdown"
@@ -36,76 +45,39 @@ export default function Navbar() {
                 >
                   Categories
                 </a>
-                <ul class="dropdown-menu">
+                <ul className="dropdown-menu">
                   <li>
-                    <a class="dropdown-item" href="#">
-                      Action
+                    <a className="dropdown-item" href="#">
+                      First category
                     </a>
                   </li>
                   <li>
-                    <a class="dropdown-item" href="#">
-                      Another action
+                    <a className="dropdown-item" href="#">
+                      Second category
                     </a>
                   </li>
                   <li>
-                    <hr class="dropdown-divider" />
-                  </li>
-                  <li>
-                    <a class="dropdown-item" href="#">
-                      Something else here
+                    <a className="dropdown-item" href="#">
+                      Third category
                     </a>
                   </li>
                 </ul>
               </li>
-              <li class="nav-item">
-                <a class="nav-link" href="#">
+              <li className="nav-item">
+                <a className="nav-link" href="/deals">
                   Today's deal
                 </a>
               </li>
-              <li class="nav-item">
-                <a class="nav-link" href="#">
-                  Favorites
+              <li className="nav-item">
+                <a className="nav-link disabled">
+                  Favorites <i className="fa fa-heart" aria-hidden="true"></i>
                 </a>
               </li>
-              <li class="nav-item">
-                <a class="nav-link" href="#">
-                  Shopping cart
+              <li className="nav-item">
+                <a className="nav-link disabled">
+                  Shopping cart{" "}
+                  <i className="fa fa-shopping-cart" aria-hidden="true"></i>
                 </a>
-              </li>
-
-              <li class="nav-item dropdown">
-                <a
-                  class="nav-link dropdown-toggle"
-                  href="#"
-                  role="button"
-                  data-bs-toggle="dropdown"
-                  aria-expanded="false"
-                >
-                  Profile
-                </a>
-                <ul class="dropdown-menu">
-                  <li>
-                    <a class="dropdown-item" href="#">
-                      Action
-                    </a>
-                  </li>
-                  <li>
-                    <a class="dropdown-item" href="#">
-                      Another action
-                    </a>
-                  </li>
-                  <li>
-                    <hr class="dropdown-divider" />
-                  </li>
-                  <li>
-                    <a class="dropdown-item" href="#">
-                      Something else here
-                    </a>
-                  </li>
-                </ul>
-              </li>
-              <li class="nav-item">
-                <a class="nav-link disabled">Disabled</a>
               </li>
             </ul>
             <div className="buttons">
@@ -114,7 +86,7 @@ export default function Navbar() {
                 Login
               </a>
               <a href="/register" className="btn btn-outline-primary ms-2">
-                <i class="fa fa-user-plus me-1" aria-hidden="true"></i>
+                <i className="fa fa-user-plus me-1" aria-hidden="true"></i>
                 Register
               </a>
             </div>

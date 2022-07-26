@@ -1,0 +1,6 @@
+.card-grid {
+  margin-top: 40px;
+  display: grid;
+  grid-template-columns: auto auto auto auto;
+  grid-gap: 20px;
+}
