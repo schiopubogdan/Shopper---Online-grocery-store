@@ -1,6 +1,6 @@
 import { Container } from "react-bootstrap";
 import LoginForm from "./LoginForm";
-import Navbar from "./NavbarVisitor";
+import Navbar from "./Navbar";
 
 function LoginPage() {
   return (

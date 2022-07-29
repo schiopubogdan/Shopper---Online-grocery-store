@@ -70,10 +70,12 @@ export function AuthProvider({ children }) {
             console.log(res.data);
             let role = res.data.role;
             if (role === "client") {
+              localStorage.setItem("role", "client");
               navigate("/homeuser");
             }
             if (role === "admin") {
-              navigate("/homeadmin");
+              localStorage.setItem("role", "admin");
+              navigate("/homeuser");
             }
           }
         })
@@ -86,6 +88,7 @@ export function AuthProvider({ children }) {
   }
 
   async function logout() {
+    localStorage.clear();
     await signOut(auth);
     navigate("/login");
   }

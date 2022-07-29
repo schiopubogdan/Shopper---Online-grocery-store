@@ -1,7 +1,7 @@
 import React from "react";
 import RegisterForm from "./RegisterForm";
 import { Container } from "react-bootstrap";
-import Navbar from "./NavbarVisitor";
+import Navbar from "./Navbar";
 
 function RegisterPage() {
   return (

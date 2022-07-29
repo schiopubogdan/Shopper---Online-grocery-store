@@ -23,4 +23,5 @@ public class Product {
     private Date expirationDate;
     private Category category;
     private Measure measure;
+    private String photoURL;
 }
