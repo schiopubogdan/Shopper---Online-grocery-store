@@ -14,4 +14,5 @@ public interface ProductService {
     String deleteById(String id) throws ExecutionException, InterruptedException;
     Product updateById(Product dto) throws ExecutionException, InterruptedException;
     List<Product> findAll() throws ExecutionException, InterruptedException;
+    List<Product> findByCategory(String category) throws ExecutionException, InterruptedException;
 }

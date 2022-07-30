@@ -1,5 +1,6 @@
 package com.example.backend.repository;
 
+import com.example.backend.entity.Category;
 import com.example.backend.entity.Product;
 import com.google.api.core.ApiFuture;
 import com.google.cloud.firestore.*;
@@ -35,6 +36,23 @@ public class ProductRepository {
             return product;
         }
         return null;
+    }
+    public List<Product> findByCategory(String category) throws ExecutionException, InterruptedException {
+        Category searchedCategory = Category.valueOf(category.toUpperCase());
+        List<Product> products = new ArrayList<>();
+        List<Product> result = new ArrayList<>();
+        Firestore dbFirestore = FirestoreClient.getFirestore();
+        ApiFuture<QuerySnapshot> future = dbFirestore.collection(COLLECTION_NAME).get();
+        List<QueryDocumentSnapshot> documents = future.get().getDocuments();
+        for (QueryDocumentSnapshot document : documents) {
+            products.add(document.toObject(Product.class));
+        }
+        for (Product p : products){
+            if(p.getCategory().equals(searchedCategory)) {
+                result.add(p);
+            }
+        }
+        return result;
     }
     public String deleteById(String id) throws ExecutionException, InterruptedException {
         Firestore dbFirestore = FirestoreClient.getFirestore();

@@ -10,3 +10,15 @@
   justify-content: center;
   align-items: center;
 }
+.bottom-part {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.product-number {
+  width: 3rem;
+  margin-right: 1rem;
+}
+.product-details-button {
+  margin-left: 0.8rem;
+}

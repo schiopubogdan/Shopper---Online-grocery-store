@@ -44,4 +44,10 @@ public class ProductController {
             InterruptedException {
         return ResponseEntity.status(HttpStatus.OK).body(productService.deleteById(id));
     }
+    @GetMapping("/get-by-category")
+    public ResponseEntity findByCategory(@RequestParam String category) throws ExecutionException,
+            InterruptedException {
+
+        return ResponseEntity.status(HttpStatus.OK).body(productService.findByCategory(category));
+    }
 }

@@ -71,11 +71,11 @@ export function AuthProvider({ children }) {
             let role = res.data.role;
             if (role === "client") {
               localStorage.setItem("role", "client");
-              navigate("/homeuser");
+              navigate("/home");
             }
             if (role === "admin") {
               localStorage.setItem("role", "admin");
-              navigate("/homeuser");
+              navigate("/homeadmin");
             }
           }
         })

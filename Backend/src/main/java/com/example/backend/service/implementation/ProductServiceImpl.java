@@ -39,4 +39,9 @@ public class ProductServiceImpl implements ProductService {
         return productRepository.findAll();
     }
 
+    @Override
+    public List<Product> findByCategory(String category) throws ExecutionException, InterruptedException {
+        return productRepository.findByCategory(category);
+    }
+
 }
