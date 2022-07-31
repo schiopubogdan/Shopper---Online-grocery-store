@@ -9,6 +9,7 @@ import PrivateRoute from "./PrivateRoute";
 import ForgotPassword from "./ForgotPassword";
 import Products from "./Products";
 import Product from "./Product";
+import TodaysDeal from "./TodaysDeal";
 
 const defaultRoute =
   window.location.pathname === "/" ? <Navigate to="/home" /> : undefined;
@@ -26,6 +27,7 @@ function App() {
         <Route exact path="/forgot-password" element={<ForgotPassword />} />
         <Route exact path="/products" element={<Products />} />
         <Route exact path="/products/:id" element={<Product />} />
+        <Route exact path="/deals" element={<TodaysDeal />} />
       </Routes>
       {defaultRoute}
     </AuthProvider>

@@ -1,14 +1,15 @@
 import React from "react";
 import Navbar from "./Navbar";
+import "./App.css";
+import "./Card.css";
 
-function Home() {
+export default function TodaysDeal() {
   return (
     <div>
       <Navbar />
       <div className="page">
-        <div className="page-grid">Home vizitator</div>
+        <div className="page-grid">Deals</div>
       </div>
     </div>
   );
 }
-export default Home;

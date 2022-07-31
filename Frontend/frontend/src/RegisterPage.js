@@ -7,14 +7,18 @@ function RegisterPage() {
   return (
     <div>
       <Navbar />
-      <Container
-        className="d-flex align-items-center justify-content-center"
-        style={{ minHeight: "100vh" }}
-      >
-        <div className="w-100" style={{ maxWidth: "400px" }}>
-          <RegisterForm />
+      <div className="page">
+        <div className="page-grid">
+          <Container
+            className="d-flex align-items-center justify-content-center"
+            style={{ minHeight: "100vh" }}
+          >
+            <div className="w-100" style={{ maxWidth: "400px" }}>
+              <RegisterForm />
+            </div>
+          </Container>
         </div>
-      </Container>
+      </div>
     </div>
   );
 }

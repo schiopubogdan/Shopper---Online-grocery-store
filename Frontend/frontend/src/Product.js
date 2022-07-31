@@ -47,53 +47,62 @@ export default function Product() {
   return (
     <div>
       <Navbar />
-      <section className="container my-5 pt 5">
-        <div className="row mt-5">
-          <div className="col-lg-5 col-md-12 col-12">
-            <img className="img-fluid w-100" src={product.photoURL} />
-          </div>
-          <div className="col-lg-6 col-md-12 col-12">
-            <h4 className="text-uppercase text-black-50">{product.category}</h4>
-            <hr class="dropdown-divider"></hr>
-            <h1 className="display-5">
-              {product.name} {product.weight} {product.measure}
-            </h1>
-            <hr class="dropdown-divider"></hr>
-            <p className="lead">
-              <Typography component="legend">Rating</Typography>
-              <Rating
-                name="read-only"
-                value={product.rating}
-                precision={0.1}
-                readOnly
-              />
-            </p>
-            <h3 className="display-6 fw-bold my-4">{product.price} Lei</h3>
-            <input
-              className="product-number"
-              type="number"
-              min="1"
-              max="20"
-            ></input>
-            <Button onClick={addToCart}>
-              Add to cart{" "}
-              <i className="fa fa-shopping-cart" aria-hidden="true"></i>
-            </Button>
-            <Button className="product-details-button" onClick={addToFavorites}>
-              Add to favorites{" "}
-              <i className="fa fa-heart" aria-hidden="true"></i>
-            </Button>
-            <Button className="product-details-button">Go to cart</Button>
-            <hr class="dropdown-divider" />
-            <h4>Product details</h4>
-            <span>
-              <div>Brand: {product.brand}</div>
-              <div>Name: {product.name}</div>
-              <div>Product description: {product.description}</div>
-            </span>
-          </div>
+      <div className="page">
+        <div className="page-grid">
+          <section className="container my-5 pt 5">
+            <div className="row mt-5">
+              <div className="col-lg-5 col-md-12 col-12">
+                <img className="img-fluid w-100" src={product.photoURL} />
+              </div>
+              <div className="col-lg-6 col-md-12 col-12">
+                <h4 className="text-uppercase text-black-50">
+                  {product.category}
+                </h4>
+                <hr class="dropdown-divider"></hr>
+                <h1 className="display-5">
+                  {product.name} {product.weight} {product.measure}
+                </h1>
+                <hr class="dropdown-divider"></hr>
+                <p className="lead">
+                  <Typography component="legend">Rating</Typography>
+                  <Rating
+                    name="read-only"
+                    value={product.rating}
+                    precision={0.1}
+                    readOnly
+                  />
+                </p>
+                <h3 className="display-6 fw-bold my-4">{product.price} Lei</h3>
+                <input
+                  className="product-number"
+                  type="number"
+                  min="1"
+                  max="20"
+                ></input>
+                <Button onClick={addToCart}>
+                  Add to cart{" "}
+                  <i className="fa fa-shopping-cart" aria-hidden="true"></i>
+                </Button>
+                <Button
+                  className="product-details-button"
+                  onClick={addToFavorites}
+                >
+                  Add to favorites{" "}
+                  <i className="fa fa-heart" aria-hidden="true"></i>
+                </Button>
+                <Button className="product-details-button">Go to cart</Button>
+                <hr class="dropdown-divider" />
+                <h4>Product details</h4>
+                <span>
+                  <div>Brand: {product.brand}</div>
+                  <div>Name: {product.name}</div>
+                  <div>Product description: {product.description}</div>
+                </span>
+              </div>
+            </div>
+          </section>
         </div>
-      </section>
+      </div>
     </div>
   );
 }
