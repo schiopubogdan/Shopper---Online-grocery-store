@@ -1,8 +1,6 @@
 package com.example.backend.repository;
 
-import com.example.backend.entity.Category;
 import com.example.backend.entity.FavoriteList;
-import com.example.backend.entity.Product;
 import com.google.api.core.ApiFuture;
 import com.google.cloud.firestore.*;
 import com.google.firebase.cloud.FirestoreClient;
@@ -43,12 +41,12 @@ public class FavoriteListRepository {
         ApiFuture<WriteResult> writeResult = dbFirestore.collection(COLLECTION_NAME).document(id).delete();
         return "Document with ID "+ id+" has been deleted";
     }
-//    public Product updateById(Product dto) throws ExecutionException, InterruptedException {
-//        Firestore dbFirestore = FirestoreClient.getFirestore();
-//        ApiFuture<WriteResult> collectionsApiFuture =
-//                dbFirestore.collection(COLLECTION_NAME).document(dto.getId()).set(dto);
-//        return dto;
-//    }
+    public FavoriteList updateById(FavoriteList dto) throws ExecutionException, InterruptedException {
+        Firestore dbFirestore = FirestoreClient.getFirestore();
+        ApiFuture<WriteResult> collectionsApiFuture =
+                dbFirestore.collection(COLLECTION_NAME).document(dto.getId()).set(dto);
+        return dto;
+    }
     public List<FavoriteList> findAll() throws ExecutionException, InterruptedException {
         List<FavoriteList> results = new ArrayList<>();
         Firestore dbFirestore = FirestoreClient.getFirestore();
@@ -58,5 +56,21 @@ public class FavoriteListRepository {
             results.add(document.toObject(FavoriteList.class));
         }
         return results;
+    }
+    public FavoriteList findUserFavoriteList(String id)throws ExecutionException, InterruptedException {
+        FavoriteList userFavoriteList = null;
+        List<FavoriteList> results = new ArrayList<>();
+        Firestore dbFirestore = FirestoreClient.getFirestore();
+        ApiFuture<QuerySnapshot> future = dbFirestore.collection(COLLECTION_NAME).get();
+        List<QueryDocumentSnapshot> documents = future.get().getDocuments();
+        for (QueryDocumentSnapshot document : documents) {
+            results.add(document.toObject(FavoriteList.class));
+        }
+        for(FavoriteList f : results) {
+            if(f.getUserId().equals(id)){
+                userFavoriteList = f;
+            }
+        }
+        return userFavoriteList;
     }
 }

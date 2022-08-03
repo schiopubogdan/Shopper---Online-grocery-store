@@ -13,4 +13,5 @@ public class FavoriteList {
     private String id;
     private String userId;
     private List<Product> products;
+
 }
