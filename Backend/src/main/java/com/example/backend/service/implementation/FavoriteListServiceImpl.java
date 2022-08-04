@@ -46,38 +46,31 @@ public class FavoriteListServiceImpl implements FavoriteListService {
     @Override
     public String addProduct(String productId, String userId) throws ExecutionException, InterruptedException {
         FavoriteList favoriteList = favoriteListRepository.findUserFavoriteList(userId);
+        Product product = productRepository.findById(productId);
+
         if(favoriteList == null) {
-            return "favlist null";
+            FavoriteList favoriteList1 = new FavoriteList();
+            List<Product> newFavoriteList = new ArrayList<>();
+            newFavoriteList.add(product);
+            favoriteList1.setUserId(userId);
+            favoriteList1.setProducts(newFavoriteList);
+            favoriteListRepository.save(favoriteList1);
+            return "Favorite list created and product added successfully";
         } else {
-            Product product = productRepository.findById(productId);
-            if(product == null) {
-                return "product null";
-            } else {
-                List<Product> products = favoriteList.getProducts();
-                if(products == null) {
-                    List<Product> newProductList = new ArrayList<>();
-                    newProductList.add(product);
-                    favoriteList.setProducts(newProductList);
-                    favoriteListRepository.updateById(favoriteList);
-                } else {
-                    boolean alreadyPresent = false;
-                    for(Product p : products) {
-                        if(p.equals(product)) {
-                          alreadyPresent = true;
-                        }
-                    }
-                    if(!alreadyPresent){
-                        products.add(product);
-                        favoriteList.setProducts(products);
-                        favoriteListRepository.updateById(favoriteList);
-                    } else {
-                        return "product already in favlist";
-                    }
-
+            List<Product> products = favoriteList.getProducts();
+            boolean alreadyPresent = false;
+            for(Product p : products) {
+                if(p.getName().equals(product.getName())) {
+                    alreadyPresent = true;
                 }
-
             }
-            return "product added to favlist";
+            if(alreadyPresent) {
+                return "Favorite list already contains this product";
+            }
+            products.add(product);
+            favoriteList.setProducts(products);
+            favoriteListRepository.updateById(favoriteList);
+            return "Favorite list already exists and product added successfully";
         }
     }
 
