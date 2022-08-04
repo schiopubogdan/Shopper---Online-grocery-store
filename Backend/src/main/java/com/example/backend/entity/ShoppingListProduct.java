@@ -9,18 +9,14 @@ import java.util.Date;
 @Data
 @Setter
 @Getter
-public class Product {
-
+public class ShoppingListProduct {
     private String id;
     private String name;
     private String brand;
-    private String description;
-    private double rating;
     private double price;
     private double weight;
+    private int quantity;
     private boolean hasExpirationDate;
     private Date expirationDate;
-    private Category category;
     private Measure measure;
-    private String photoURL;
 }

@@ -13,7 +13,6 @@ import java.util.concurrent.ExecutionException;
 @RestController
 @CrossOrigin
 @RequestMapping("/api/favorite")
-
 public class FavoriteListController {
 
     @Autowired
