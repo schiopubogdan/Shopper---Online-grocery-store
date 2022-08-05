@@ -8,6 +8,7 @@ import {
 import React, { useContext, useState, useEffect } from "react";
 import { auth } from "./firebase-config";
 import { useNavigate } from "react-router-dom";
+import { red } from "@mui/material/colors";
 const AuthContex = React.createContext();
 
 export function useAuth() {
@@ -62,6 +63,7 @@ export function AuthProvider({ children }) {
       const userJSON = JSON.stringify(user);
       var json = JSON.parse(userJSON);
       let id = json.user.uid;
+      localStorage.setItem("userId", id);
       //call de axios cu getUserRole by id
       axios
         .get("http://localhost:8080/api/user/get", { params: { id: id } })
@@ -78,6 +80,28 @@ export function AuthProvider({ children }) {
               navigate("/homeadmin");
             }
           }
+        })
+        .catch((error) => {
+          console.log(error);
+        });
+      axios
+        .get("http://localhost:8080/api/favorite/get", { params: { id: id } })
+        .then((res) => {
+          const userFavorites = JSON.stringify(res.data);
+          var json = JSON.parse(userFavorites);
+          console.log(json);
+          localStorage.setItem("favorites", JSON.stringify(json));
+        })
+        .catch((error) => {
+          console.log(error);
+        });
+      axios
+        .get("http://localhost:8080/api/shopping/get", { params: { id: id } })
+        .then((res) => {
+          const userCart = JSON.stringify(res.data);
+          var json = JSON.parse(userCart);
+          console.log(json);
+          localStorage.setItem("shopping", JSON.stringify(json));
         })
         .catch((error) => {
           console.log(error);

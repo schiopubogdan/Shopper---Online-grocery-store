@@ -10,7 +10,8 @@ import ForgotPassword from "./ForgotPassword";
 import Products from "./Products";
 import Product from "./Product";
 import TodaysDeal from "./TodaysDeal";
-
+import Favorites from "./Favorites";
+import ShoppingCart from "./ShoppingCart";
 const defaultRoute =
   window.location.pathname === "/" ? <Navigate to="/home" /> : undefined;
 function App() {
@@ -28,6 +29,8 @@ function App() {
         <Route exact path="/products" element={<Products />} />
         <Route exact path="/products/:id" element={<Product />} />
         <Route exact path="/deals" element={<TodaysDeal />} />
+        <Route exact path="/favorites" element={<Favorites />} />
+        <Route exact path="/shopping" element={<ShoppingCart />} />
       </Routes>
       {defaultRoute}
     </AuthProvider>

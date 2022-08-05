@@ -144,13 +144,21 @@ export default function Navbar() {
                     </a>
                   </li>
                   <li className="nav-item">
-                    <a className="nav-link active" aria-current="page" href="#">
+                    <a
+                      className="nav-link active"
+                      aria-current="page"
+                      href="/favorites"
+                    >
                       Favorites{" "}
                       <i className="fa fa-heart" aria-hidden="true"></i>
                     </a>
                   </li>
                   <li className="nav-item">
-                    <a className="nav-link active" aria-current="page" href="#">
+                    <a
+                      className="nav-link active"
+                      aria-current="page"
+                      href="/shopping"
+                    >
                       Shopping cart{" "}
                       <i className="fa fa-shopping-cart" aria-hidden="true"></i>
                     </a>
