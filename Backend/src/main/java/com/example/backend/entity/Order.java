@@ -16,4 +16,5 @@ public class Order {
     private List<ShoppingListProduct> products;
     private Status status;
     private Date date;
+    private double total;
 }

@@ -20,6 +20,7 @@ public interface ShoppingListService {
     String removeProduct(String productId, String userId) throws ExecutionException, InterruptedException;
     String updateProductQuantity(String productId, String userId, int quantity) throws ExecutionException, InterruptedException;
     String clear(String userId) throws ExecutionException, InterruptedException;
+    String finalizeOrder(String userId) throws ExecutionException, InterruptedException;
 
 
 }

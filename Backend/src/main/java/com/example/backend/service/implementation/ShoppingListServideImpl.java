@@ -1,9 +1,7 @@
 package com.example.backend.service.implementation;
 
-import com.example.backend.entity.FavoriteList;
-import com.example.backend.entity.Product;
-import com.example.backend.entity.ShoppingList;
-import com.example.backend.entity.ShoppingListProduct;
+import com.example.backend.entity.*;
+import com.example.backend.repository.OrderRepository;
 import com.example.backend.repository.ProductRepository;
 import com.example.backend.repository.ShoppingListProductRepository;
 import com.example.backend.repository.ShoppingListRepository;
@@ -12,6 +10,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 import java.util.concurrent.ExecutionException;
 @Service
@@ -23,6 +22,8 @@ public class ShoppingListServideImpl implements ShoppingListService {
     private ProductRepository productRepository;
     @Autowired
     private ShoppingListProductRepository shoppingListProductRepository;
+    @Autowired
+    private OrderRepository orderRepository;
 
 
     @Override
@@ -170,5 +171,21 @@ public class ShoppingListServideImpl implements ShoppingListService {
             shoppingListRepository.updateById(shoppingList);
             return "Shopping list cleared";
         }
+    }
+
+    @Override
+    public String finalizeOrder(String userId) throws ExecutionException, InterruptedException {
+        ShoppingList shoppingList = shoppingListRepository.findUserShoppingList(userId);
+        Order order = new Order();
+        order.setUserId(userId);
+        order.setProducts(shoppingList.getProducts());
+        order.setDate(new Date());
+        order.setStatus(Status.PAID);
+        order.setTotal(shoppingList.getTotal());
+        orderRepository.save(order);
+        shoppingList.setProducts(new ArrayList<>());
+        shoppingList.setTotal(0);
+        shoppingListRepository.updateById(shoppingList);
+        return "Order has been received";
     }
 }

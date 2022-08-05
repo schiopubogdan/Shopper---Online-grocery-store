@@ -64,4 +64,9 @@ public class ShoppingListController {
             InterruptedException {
         return ResponseEntity.status(HttpStatus.OK).body(shoppingListService.clear(userId));
     }
+    @PutMapping("/finalize/{id}")
+    public ResponseEntity finalizeOrder( @PathVariable("id") String userId) throws ExecutionException,
+            InterruptedException {
+        return ResponseEntity.status(HttpStatus.OK).body(shoppingListService.finalizeOrder(userId));
+    }
 }
