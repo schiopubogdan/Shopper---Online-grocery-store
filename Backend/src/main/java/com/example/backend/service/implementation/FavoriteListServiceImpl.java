@@ -89,4 +89,21 @@ public class FavoriteListServiceImpl implements FavoriteListService {
         }
     }
 
+    @Override
+    public Boolean checkProduct(String productId, String userId) throws ExecutionException, InterruptedException {
+        FavoriteList favoriteList = favoriteListRepository.findUserFavoriteList(userId);
+        if(favoriteList == null) {
+            return false;
+        } else {
+            boolean isPresent = false;
+            List<Product> products = favoriteList.getProducts();
+            for(Product p : products) {
+                if(p.getId().equals(productId)){
+                    isPresent = true;
+                }
+            }
+            return isPresent;
+        }
+    }
+
 }

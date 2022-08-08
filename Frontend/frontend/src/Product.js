@@ -9,30 +9,86 @@ import "./Card.css";
 export default function Product() {
   const location = useLocation();
   const [product, setProduct] = useState([]);
+  const [isPresent, setIsPresent] = useState(false);
   const { id } = location.state;
 
   useEffect(() => {
     const getProduct = async () => {
       try {
+        let userId = localStorage.getItem("userId");
         const resp = await axios.get("http://localhost:8080/api/product/get", {
           params: { id: id },
         });
         setProduct(resp.data);
         console.log(resp.data);
+        let dto = {
+          productId: id,
+          userId: userId,
+        };
+        axios
+          .post("http://localhost:8080/api/favorite/check", dto)
+          .then((res) => {
+            if (res.data === "") {
+              console.log("Some error");
+            } else {
+              setIsPresent(res.data);
+            }
+          })
+          .catch((error) => {
+            console.log(error);
+          });
       } catch (err) {
         console.log(err);
       }
     };
     getProduct();
   }, []);
+
   function addToFavorites() {
-    console.log("Add to favorites clicked");
     if (localStorage.getItem("role") === "client") {
-      //
+      // axios call pentru adaugare produs
+      let userId = localStorage.getItem("userId");
+      let dto = {
+        productId: id,
+        userId: userId,
+      };
+      axios
+        .post("http://localhost:8080/api/favorite/add", dto)
+        .then((res) => {
+          if (res.data === "") {
+            console.log("X");
+          } else {
+            console.log("Product added");
+          }
+        })
+        .catch((error) => {
+          console.log(error);
+        });
       alert("Item was successfully added.");
     } else {
       alert("You must be logged in order to perform this action!");
     }
+  }
+  function removeFromFavorite() {
+    //apel axios
+    let userId = localStorage.getItem("userId");
+    let dto = {
+      productId: id,
+      userId: userId,
+    };
+    axios
+      .post("http://localhost:8080/api/favorite/remove", dto)
+      .then((res) => {
+        if (res.data === "") {
+          alert("X");
+        } else {
+          alert("Product removed");
+        }
+      })
+      .catch((error) => {
+        console.log(error);
+      });
+    window.location.reload();
   }
   function addToCart() {
     console.log("Add to cart clicked");
@@ -58,12 +114,12 @@ export default function Product() {
                 <h4 className="text-uppercase text-black-50">
                   {product.category}
                 </h4>
-                <hr class="dropdown-divider"></hr>
+                <hr className="dropdown-divider"></hr>
                 <h1 className="display-5">
                   {product.name} {product.weight} {product.measure}
                 </h1>
-                <hr class="dropdown-divider"></hr>
-                <p className="lead">
+                <hr className="dropdown-divider"></hr>
+                {/* <p className="lead">
                   <Typography component="legend">Rating</Typography>
                   <Rating
                     name="read-only"
@@ -71,7 +127,7 @@ export default function Product() {
                     precision={0.1}
                     readOnly
                   />
-                </p>
+                </p> */}
                 <h3 className="display-6 fw-bold my-4">{product.price} Lei</h3>
                 <input
                   className="product-number"
@@ -83,15 +139,27 @@ export default function Product() {
                   Add to cart{" "}
                   <i className="fa fa-shopping-cart" aria-hidden="true"></i>
                 </Button>
-                <Button
-                  className="product-details-button"
-                  onClick={addToFavorites}
-                >
-                  Add to favorites{" "}
-                  <i className="fa fa-heart" aria-hidden="true"></i>
-                </Button>
+                {isPresent && (
+                  <Button
+                    className="btn btn-danger product-details-button"
+                    onClick={removeFromFavorite}
+                  >
+                    Remove from favorites{" "}
+                    <i className="fa fa-heart" aria-hidden="true"></i>
+                  </Button>
+                )}
+                {!isPresent && (
+                  <Button
+                    className="product-details-button"
+                    onClick={addToFavorites}
+                  >
+                    Add to favorites{" "}
+                    <i className="fa fa-heart" aria-hidden="true"></i>
+                  </Button>
+                )}
+
                 <Button className="product-details-button">Go to cart</Button>
-                <hr class="dropdown-divider" />
+                <hr className="dropdown-divider" />
                 <h4>Product details</h4>
                 <span>
                   <div>Brand: {product.brand}</div>

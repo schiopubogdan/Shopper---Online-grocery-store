@@ -3,15 +3,29 @@ import { Link } from "react-router-dom";
 import { Button } from "react-bootstrap";
 import { Rating, Typography } from "@mui/material";
 import axios from "axios";
+import { reload } from "firebase/auth";
 
 export default function ProductCardFavorite(props) {
   function removeFromFavorite() {
-    console.log("Remove from favorites clicked");
     //apel axios
     let id = localStorage.getItem("userId");
-    axios.get("http://localhost:8080/api/favorite/remove", {
-      params: { id: id, productId: props.product.id },
-    });
+    let dto = {
+      productId: props.product.id,
+      userId: id,
+    };
+    axios
+      .post("http://localhost:8080/api/favorite/remove", dto)
+      .then((res) => {
+        if (res.data === "") {
+          alert("X");
+        } else {
+          alert("Product removed");
+        }
+      })
+      .catch((error) => {
+        console.log(error);
+      });
+    window.location.reload();
   }
   return (
     <div

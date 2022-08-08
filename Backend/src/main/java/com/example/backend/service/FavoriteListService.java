@@ -16,5 +16,6 @@ public interface FavoriteListService {
      FavoriteList updateById(FavoriteList dto) throws ExecutionException, InterruptedException;
      String addProduct(String productId, String userId) throws ExecutionException, InterruptedException;
      String removeProduct(String productId, String userId) throws ExecutionException, InterruptedException;
+     Boolean checkProduct(String productId, String userId) throws ExecutionException, InterruptedException;
 
 }

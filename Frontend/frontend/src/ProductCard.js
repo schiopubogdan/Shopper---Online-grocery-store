@@ -2,12 +2,29 @@ import React from "react";
 import { Link } from "react-router-dom";
 import { Button } from "react-bootstrap";
 import { Rating, Typography } from "@mui/material";
+import axios from "axios";
 
 export default function ProductCard(props) {
   function addToFavorites() {
-    console.log("Add to favorites clicked");
     if (localStorage.getItem("role") === "client") {
-      //
+      // axios call pentru adaugare produs
+      let id = localStorage.getItem("userId");
+      let dto = {
+        productId: props.product.id,
+        userId: id,
+      };
+      axios
+        .post("http://localhost:8080/api/favorite/add", dto)
+        .then((res) => {
+          if (res.data === "") {
+            console.log("X");
+          } else {
+            console.log("Product added");
+          }
+        })
+        .catch((error) => {
+          console.log(error);
+        });
       alert("Item was successfully added.");
     } else {
       alert("You must be logged in order to perform this action!");

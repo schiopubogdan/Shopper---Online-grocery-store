@@ -84,28 +84,6 @@ export function AuthProvider({ children }) {
         .catch((error) => {
           console.log(error);
         });
-      axios
-        .get("http://localhost:8080/api/favorite/get", { params: { id: id } })
-        .then((res) => {
-          const userFavorites = JSON.stringify(res.data);
-          var json = JSON.parse(userFavorites);
-          console.log(json);
-          localStorage.setItem("favorites", JSON.stringify(json));
-        })
-        .catch((error) => {
-          console.log(error);
-        });
-      axios
-        .get("http://localhost:8080/api/shopping/get", { params: { id: id } })
-        .then((res) => {
-          const userCart = JSON.stringify(res.data);
-          var json = JSON.parse(userCart);
-          console.log(json);
-          localStorage.setItem("shopping", JSON.stringify(json));
-        })
-        .catch((error) => {
-          console.log(error);
-        });
     } catch (error) {
       console.log(error.message);
     }
