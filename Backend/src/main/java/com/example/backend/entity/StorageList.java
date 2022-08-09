@@ -9,10 +9,8 @@ import java.util.List;
 @Data
 @Setter
 @Getter
-public class ShoppingList {
+public class StorageList {
     private String id;
     private String userId;
-    private List<CartProduct> products;
-    private double total;
-
+    private List<StorageProduct> products;
 }

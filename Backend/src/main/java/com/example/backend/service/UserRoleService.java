@@ -1,6 +1,5 @@
 package com.example.backend.service;
 
-import com.example.backend.entity.Product;
 import com.example.backend.entity.UserRole;
 import org.springframework.stereotype.Component;
 

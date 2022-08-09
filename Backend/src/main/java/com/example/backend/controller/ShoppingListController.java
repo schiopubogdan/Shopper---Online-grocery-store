@@ -1,5 +1,7 @@
 package com.example.backend.controller;
 
+import com.example.backend.dto.CartProductDTO;
+import com.example.backend.dto.ProductDTO;
 import com.example.backend.entity.FavoriteList;
 import com.example.backend.entity.ShoppingList;
 import com.example.backend.service.ShoppingListService;
@@ -44,20 +46,20 @@ public class ShoppingListController {
             InterruptedException {
         return ResponseEntity.status(HttpStatus.OK).body(shoppingListService.deleteById(id));
     }
-    @PutMapping("/add/{id}")
-    public ResponseEntity addProduct(@RequestParam String productId, @PathVariable("id") String userId) throws ExecutionException,
+    @PostMapping("/add")
+    public ResponseEntity addProduct(@RequestBody CartProductDTO dto) throws ExecutionException,
             InterruptedException {
-        return ResponseEntity.status(HttpStatus.OK).body(shoppingListService.addProduct(productId,userId));
+        return ResponseEntity.status(HttpStatus.OK).body(shoppingListService.addProduct(dto.getProductId(), dto.getUserId(),dto.getQuantity()));
     }
-    @PutMapping("/remove/{id}")
-    public ResponseEntity removeProduct(@RequestParam String productId, @PathVariable("id") String userId) throws ExecutionException,
+    @PostMapping("/remove")
+    public ResponseEntity removeProduct(@RequestBody ProductDTO dto) throws ExecutionException,
             InterruptedException {
-        return ResponseEntity.status(HttpStatus.OK).body(shoppingListService.removeProduct(productId,userId));
+        return ResponseEntity.status(HttpStatus.OK).body(shoppingListService.removeProduct(dto.getProductId(),dto.getUserId()));
     }
-    @PutMapping("/update/{id}")
-    public ResponseEntity updateQuantity(@RequestParam String productId, @RequestParam int quantity, @PathVariable("id") String userId) throws ExecutionException,
+    @PostMapping("/update")
+    public ResponseEntity updateQuantity(@RequestBody CartProductDTO dto) throws ExecutionException,
             InterruptedException {
-        return ResponseEntity.status(HttpStatus.OK).body(shoppingListService.updateProductQuantity(productId,userId,quantity));
+        return ResponseEntity.status(HttpStatus.OK).body(shoppingListService.updateProductQuantity(dto.getProductId(), dto.getUserId(), dto.getQuantity()));
     }
     @PutMapping("/clear/{id}")
     public ResponseEntity clear( @PathVariable("id") String userId) throws ExecutionException,

@@ -10,6 +10,7 @@ export default function Product() {
   const location = useLocation();
   const [product, setProduct] = useState([]);
   const [isPresent, setIsPresent] = useState(false);
+  const [quantity, setQuantity] = useState(1);
   const { id } = location.state;
 
   useEffect(() => {
@@ -91,9 +92,27 @@ export default function Product() {
     window.location.reload();
   }
   function addToCart() {
-    console.log("Add to cart clicked");
     if (localStorage.getItem("role") === "client") {
-      //
+      // axios call pentru adaugare produs
+      let userId = localStorage.getItem("userId");
+      let dto = {
+        productId: id,
+        userId: userId,
+        quantity: quantity,
+      };
+      console.log(dto);
+      axios
+        .post("http://localhost:8080/api/shopping/add", dto)
+        .then((res) => {
+          if (res.data === "") {
+            console.log("X");
+          } else {
+            console.log("Product added");
+          }
+        })
+        .catch((error) => {
+          console.log(error);
+        });
       alert("Item was successfully added.");
     } else {
       alert("You must be logged in order to perform this action!");
@@ -134,6 +153,7 @@ export default function Product() {
                   type="number"
                   min="1"
                   max="20"
+                  onChange={(e) => setQuantity(e.target.value)}
                 ></input>
                 <Button onClick={addToCart}>
                   Add to cart{" "}

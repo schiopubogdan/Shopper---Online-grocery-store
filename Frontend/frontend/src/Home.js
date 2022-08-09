@@ -6,7 +6,7 @@ function Home() {
     <div>
       <Navbar />
       <div className="page">
-        <div className="page-grid">Home vizitator</div>
+        <div className="page-grid">Home</div>
       </div>
     </div>
   );

@@ -31,9 +31,26 @@ export default function ProductCard(props) {
     }
   }
   function addToCart() {
-    console.log("Add to cart clicked");
     if (localStorage.getItem("role") === "client") {
-      //
+      //axios call pentru adaugare produs
+      let id = localStorage.getItem("userId");
+      let dto = {
+        productId: props.product.id,
+        userId: id,
+        quantity: 1,
+      };
+      axios
+        .post("http://localhost:8080/api/shopping/add", dto)
+        .then((res) => {
+          if (res.data === "") {
+            console.log("X");
+          } else {
+            console.log("Product added");
+          }
+        })
+        .catch((error) => {
+          console.log(error);
+        });
       alert("Item was successfully added.");
     } else {
       alert("You must be logged in order to perform this action!");

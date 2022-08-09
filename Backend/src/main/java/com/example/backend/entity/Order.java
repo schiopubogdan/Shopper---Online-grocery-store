@@ -13,7 +13,7 @@ import java.util.List;
 public class Order {
     private String id;
     private String userId;
-    private List<ShoppingListProduct> products;
+    private List<CartProduct> products;
     private Status status;
     private Date date;
     private double total;

@@ -1,6 +1,5 @@
 package com.example.backend.controller;
 
-import com.example.backend.entity.Product;
 import com.example.backend.entity.UserRole;
 import com.example.backend.service.UserRoleService;
 import org.springframework.beans.factory.annotation.Autowired;
