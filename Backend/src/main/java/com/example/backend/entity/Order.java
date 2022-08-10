@@ -17,4 +17,6 @@ public class Order {
     private Status status;
     private Date date;
     private double total;
+    private String workerId;
+    private String driverId;
 }

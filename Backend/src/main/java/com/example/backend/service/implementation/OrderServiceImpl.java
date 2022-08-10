@@ -1,6 +1,7 @@
 package com.example.backend.service.implementation;
 
 import com.example.backend.entity.Order;
+import com.example.backend.entity.Status;
 import com.example.backend.repository.OrderRepository;
 import com.example.backend.service.OrderService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -38,5 +39,28 @@ public class OrderServiceImpl implements OrderService {
     @Override
     public List<Order> findAll() throws ExecutionException, InterruptedException {
         return orderRepository.findAll();
+    }
+
+    @Override
+    public String promote(String id,String workerId, String driverId) throws ExecutionException, InterruptedException {
+        Order order = orderRepository.findById(id);
+        if(order.getStatus().equals(Status.PAID)) {
+            order.setStatus(Status.IN_PROGRESS);
+            order.setWorkerId(workerId);
+            orderRepository.updateById(order);
+            return "Order promoted to IN_PROGRESS";
+        }
+        if(order.getStatus().equals(Status.IN_PROGRESS)) {
+            order.setStatus(Status.READY);
+            orderRepository.updateById(order);
+            return "Order promoted to READY";
+        }
+        if(order.getStatus().equals(Status.READY) && order.getDriverId()!= null) {
+            order.setStatus(Status.DELIVERED);
+            order.setDriverId(driverId);
+            orderRepository.updateById(order);
+            return "Order promoted to DELIVERED";
+        }
+        return "";
     }
 }

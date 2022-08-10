@@ -16,4 +16,5 @@ public interface OrderService {
     String deleteById(String id) throws ExecutionException, InterruptedException;
     Order updateById(Order dto) throws ExecutionException, InterruptedException;
     List<Order> findAll() throws ExecutionException, InterruptedException;
+    String promote(String id, String workerId, String driverId) throws ExecutionException, InterruptedException;
 }

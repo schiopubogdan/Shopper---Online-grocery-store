@@ -14,7 +14,7 @@ import java.util.Date;
 import java.util.List;
 import java.util.concurrent.ExecutionException;
 @Service
-public class ShoppingListServideImpl implements ShoppingListService {
+public class ShoppingListServiceImpl implements ShoppingListService {
 
     @Autowired
     private ShoppingListRepository shoppingListRepository;

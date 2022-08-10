@@ -79,6 +79,10 @@ export function AuthProvider({ children }) {
               localStorage.setItem("role", "admin");
               navigate("/homeadmin");
             }
+            if (role == "worker") {
+              localStorage.setItem("role", "worker");
+              navigate("/worker");
+            }
           }
         })
         .catch((error) => {

@@ -1,5 +1,6 @@
 package com.example.backend.controller;
 
+import com.example.backend.dto.OrderDTO;
 import com.example.backend.entity.Order;
 import com.example.backend.service.OrderService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -43,5 +44,10 @@ public class OrderController {
     public ResponseEntity deleteById(@RequestParam String id) throws ExecutionException,
             InterruptedException {
         return ResponseEntity.status(HttpStatus.OK).body(orderService.deleteById(id));
+    }
+    @PostMapping("/promote")
+    public ResponseEntity promote(@RequestBody OrderDTO dto) throws ExecutionException,
+            InterruptedException {
+        return ResponseEntity.status(HttpStatus.OK).body(orderService.promote(dto.getOrderId(),dto.getWorkerId(),dto.getDriverId()));
     }
 }
