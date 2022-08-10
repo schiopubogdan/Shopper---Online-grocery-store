@@ -9,6 +9,7 @@ import CartClear from "./CartClear";
 
 export default function ShoppingCart() {
   const [products, setProducts] = useState(null);
+  const [itemsPrice, setItemsPrice] = useState();
 
   function finalizeOrder() {
     let id = localStorage.getItem("userId");
@@ -37,8 +38,8 @@ export default function ShoppingCart() {
         const resp = await axios.get("http://localhost:8080/api/shopping/get", {
           params: { id: id },
         });
-        setProducts(resp.data);
-        console.log(resp.data);
+        setProducts(resp.data.products);
+        setItemsPrice(resp.data.total);
       } catch (err) {
         console.log(err);
       }
@@ -70,9 +71,12 @@ export default function ShoppingCart() {
               ))}
               <hr className="dropdown-divider" />
 
-              <CartPrice text="Items price" price="1" />
+              <CartPrice text="Items price" price={itemsPrice} />
               <CartPrice text="Shipping price" price="14.99" />
-              <CartPrice text="Total price" price="1" />
+              <CartPrice
+                text="Total price"
+                price={Math.round((itemsPrice + 14.99) * 100) / 100}
+              />
             </div>
             <hr className="dropdown-divider" />
             <div className="cart-footer">

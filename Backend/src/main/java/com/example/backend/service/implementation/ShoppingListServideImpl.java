@@ -32,13 +32,8 @@ public class ShoppingListServideImpl implements ShoppingListService {
     }
 
     @Override
-    public List<CartProduct> findById(String id) throws ExecutionException, InterruptedException {
-        ShoppingList shoppingList = shoppingListRepository.findUserShoppingList(id);
-        List<CartProduct> shoppingListProducts = null;
-        if(shoppingList != null) {
-            shoppingListProducts = shoppingListRepository.findUserShoppingList(id).getProducts();
-        }
-        return shoppingListProducts;
+    public ShoppingList findById(String id) throws ExecutionException, InterruptedException {
+        return shoppingListRepository.findUserShoppingList(id);
     }
 
     @Override
@@ -182,7 +177,7 @@ public class ShoppingListServideImpl implements ShoppingListService {
             order.setProducts(shoppingList.getProducts());
             order.setDate(new Date());
             order.setStatus(Status.PAID);
-            order.setTotal(shoppingList.getTotal());
+            order.setTotal(shoppingList.getTotal() + 14.99);
             orderRepository.save(order);
             shoppingList.setProducts(new ArrayList<>());
             shoppingList.setTotal(0);

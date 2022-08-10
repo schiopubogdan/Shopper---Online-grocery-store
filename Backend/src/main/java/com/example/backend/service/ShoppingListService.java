@@ -10,7 +10,7 @@ import java.util.concurrent.ExecutionException;
 @Component
 public interface ShoppingListService {
     ShoppingList save(ShoppingList dto) throws ExecutionException, InterruptedException;
-    List<CartProduct> findById(String id) throws ExecutionException, InterruptedException;
+    ShoppingList findById(String id) throws ExecutionException, InterruptedException;
     String deleteById(String id) throws ExecutionException, InterruptedException;
     List<ShoppingList> findAll() throws ExecutionException, InterruptedException;
     ShoppingList updateById(ShoppingList dto) throws ExecutionException, InterruptedException;
