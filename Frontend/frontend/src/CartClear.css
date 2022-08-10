@@ -1,0 +1,27 @@
+.cart-clear-div {
+  height: 2rem;
+  margin-top: 0.125rem;
+}
+.cart-clear-first {
+  width: 80%;
+  height: 2rem;
+  display: inline-block;
+  text-align: left;
+}
+.cart-clear-second {
+  width: 20%;
+  height: 2rem;
+  display: inline-block;
+  text-align: right;
+}
+.text {
+  margin-left: 0.5rem;
+  margin-right: 0.5rem;
+}
+.thicker {
+  font-weight: 900;
+}
+.clear-button {
+  background: red;
+  border-radius: 5px;
+}

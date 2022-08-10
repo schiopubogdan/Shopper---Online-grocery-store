@@ -178,7 +178,9 @@ export default function Product() {
                   </Button>
                 )}
 
-                <Button className="product-details-button">Go to cart</Button>
+                <a href="/shopping">
+                  <Button className="product-details-button">Go to cart</Button>
+                </a>
                 <hr className="dropdown-divider" />
                 <h4>Product details</h4>
                 <span>

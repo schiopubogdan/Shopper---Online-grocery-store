@@ -3,7 +3,6 @@ import { Link } from "react-router-dom";
 import { Button } from "react-bootstrap";
 import { Rating, Typography } from "@mui/material";
 import axios from "axios";
-import { reload } from "firebase/auth";
 
 export default function ProductCardFavorite(props) {
   function removeFromFavorite() {

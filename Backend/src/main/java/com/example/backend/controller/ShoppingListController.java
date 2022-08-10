@@ -2,7 +2,6 @@ package com.example.backend.controller;
 
 import com.example.backend.dto.CartProductDTO;
 import com.example.backend.dto.ProductDTO;
-import com.example.backend.entity.FavoriteList;
 import com.example.backend.entity.ShoppingList;
 import com.example.backend.service.ShoppingListService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -61,14 +60,14 @@ public class ShoppingListController {
             InterruptedException {
         return ResponseEntity.status(HttpStatus.OK).body(shoppingListService.updateProductQuantity(dto.getProductId(), dto.getUserId(), dto.getQuantity()));
     }
-    @PutMapping("/clear/{id}")
-    public ResponseEntity clear( @PathVariable("id") String userId) throws ExecutionException,
+    @PostMapping("/clear")
+    public ResponseEntity clear(@RequestBody ProductDTO dto) throws ExecutionException,
             InterruptedException {
-        return ResponseEntity.status(HttpStatus.OK).body(shoppingListService.clear(userId));
+        return ResponseEntity.status(HttpStatus.OK).body(shoppingListService.clear(dto.getUserId()));
     }
-    @PutMapping("/finalize/{id}")
-    public ResponseEntity finalizeOrder( @PathVariable("id") String userId) throws ExecutionException,
+    @PostMapping("/finalize")
+    public ResponseEntity finalizeOrder(@RequestBody ProductDTO dto) throws ExecutionException,
             InterruptedException {
-        return ResponseEntity.status(HttpStatus.OK).body(shoppingListService.finalizeOrder(userId));
+        return ResponseEntity.status(HttpStatus.OK).body(shoppingListService.finalizeOrder(dto.getUserId()));
     }
 }

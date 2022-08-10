@@ -174,16 +174,20 @@ public class ShoppingListServideImpl implements ShoppingListService {
     @Override
     public String finalizeOrder(String userId) throws ExecutionException, InterruptedException {
         ShoppingList shoppingList = shoppingListRepository.findUserShoppingList(userId);
-        Order order = new Order();
-        order.setUserId(userId);
-        order.setProducts(shoppingList.getProducts());
-        order.setDate(new Date());
-        order.setStatus(Status.PAID);
-        order.setTotal(shoppingList.getTotal());
-        orderRepository.save(order);
-        shoppingList.setProducts(new ArrayList<>());
-        shoppingList.setTotal(0);
-        shoppingListRepository.updateById(shoppingList);
-        return "Order has been received";
+        if(shoppingList.getProducts().isEmpty()){
+            return("Shopping cart empty. No order created");
+        } else {
+            Order order = new Order();
+            order.setUserId(userId);
+            order.setProducts(shoppingList.getProducts());
+            order.setDate(new Date());
+            order.setStatus(Status.PAID);
+            order.setTotal(shoppingList.getTotal());
+            orderRepository.save(order);
+            shoppingList.setProducts(new ArrayList<>());
+            shoppingList.setTotal(0);
+            shoppingListRepository.updateById(shoppingList);
+            return "Order has been received";
+        }
     }
 }

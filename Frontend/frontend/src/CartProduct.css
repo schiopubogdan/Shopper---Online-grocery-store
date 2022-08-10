@@ -1,0 +1,44 @@
+.remove-button {
+  background: red;
+  border-radius: 5px;
+}
+.cart-product {
+  border-style: groove;
+  border-radius: 5px;
+  height: 2.5rem;
+  margin-top: 0.5rem;
+}
+.first {
+  width: 40%;
+  height: 2.5rem;
+  display: inline-block;
+}
+.second {
+  text-align: center;
+  width: 10%;
+  height: 2.5rem;
+  display: inline-block;
+}
+.third {
+  text-align: right;
+  width: 30%;
+  height: 2.5rem;
+  display: inline-block;
+}
+.fourth {
+  text-align: right;
+  width: 20%;
+  height: 2.5rem;
+  display: inline-block;
+}
+.quantity-button {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.button-div {
+  margin-left: 0.25rem;
+  margin-right: 0.25rem;
+  height: 1.5rem;
+  display: inline-block;
+}

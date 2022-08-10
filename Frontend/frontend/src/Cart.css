@@ -1,0 +1,35 @@
+.cart {
+  border: 2px solid #0d6cf9;
+  border-radius: 5px;
+}
+.cart-head {
+  background: #0d6cf9;
+  height: 4rem;
+}
+
+.cart-head-title {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.cart-footer {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.checkout-button {
+  background: #0d6cf9;
+  width: 10rem;
+  margin-bottom: 0.5rem;
+}
+.cart-price {
+  margin-top: 0.125rem;
+  margin-bottom: 0.125rem;
+}
+.cart-price-amount {
+  float: right;
+}
+.thicker {
+  font-weight: 900;
+}
