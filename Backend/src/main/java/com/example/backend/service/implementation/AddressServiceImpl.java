@@ -26,6 +26,18 @@ public class AddressServiceImpl implements AddressService {
     }
 
     @Override
+    public Address findByUserId(String id) throws ExecutionException, InterruptedException {
+        List<Address> addresses = addressRepository.findAll();
+        Address address = null;
+        for(Address a : addresses) {
+            if(id.equals(a.getUserId())) {
+                address = a;
+            }
+        }
+        return address;
+    }
+
+    @Override
     public String deleteById(String id) throws ExecutionException, InterruptedException {
         return addressRepository.deleteById(id);
     }

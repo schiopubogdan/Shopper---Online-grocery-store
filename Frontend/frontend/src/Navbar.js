@@ -184,9 +184,16 @@ export default function Navbar() {
                   variant="primary"
                   title="Profile"
                 >
-                  <Dropdown.Item eventKey="1">My profile</Dropdown.Item>
-                  <Dropdown.Item eventKey="2">My orders</Dropdown.Item>
-                  <Dropdown.Item eventKey="3">My coupons</Dropdown.Item>
+                  <Dropdown.Item href="/profile" eventKey="1">
+                    My profile
+                  </Dropdown.Item>
+
+                  <Dropdown.Item href="/orders" eventKey="2">
+                    My orders
+                  </Dropdown.Item>
+                  <Dropdown.Item href="/coupons" eventKey="3">
+                    My coupons
+                  </Dropdown.Item>
                   <Dropdown.Divider />
                   <Dropdown.Item eventKey="4" onClick={handleLogout}>
                     Log out

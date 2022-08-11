@@ -1,7 +1,6 @@
 package com.example.backend.controller;
 
 import com.example.backend.entity.Address;
-import com.example.backend.entity.UserRole;
 import com.example.backend.service.AddressService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -18,12 +17,6 @@ public class AddressController {
     @Autowired
     private  AddressService addressService;
 
-    @GetMapping("/get")
-    public ResponseEntity findById(@RequestParam String id) throws ExecutionException,
-            InterruptedException {
-
-        return ResponseEntity.status(HttpStatus.OK).body(addressService.findById(id));
-    }
     @GetMapping
     public ResponseEntity get() throws ExecutionException,
             InterruptedException {
@@ -44,6 +37,12 @@ public class AddressController {
     public ResponseEntity deleteById(@RequestParam String id) throws ExecutionException,
             InterruptedException {
         return ResponseEntity.status(HttpStatus.OK).body(addressService.deleteById(id));
+    }
+    @GetMapping("/get")
+    public ResponseEntity findByUserId(@RequestParam String id) throws ExecutionException,
+            InterruptedException {
+
+        return ResponseEntity.status(HttpStatus.OK).body(addressService.findByUserId(id));
     }
 
 }

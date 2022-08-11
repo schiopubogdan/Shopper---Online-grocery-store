@@ -1,0 +1,29 @@
+.address-div {
+  width: 40rem;
+  height: 6rem;
+  border: 2px solid #0d6cf9;
+  border-radius: 5px;
+}
+.address-div-header {
+  text-align: center;
+  background: #42c4f0;
+  border-bottom: 1px solid #0d6cf9;
+}
+.address-div-buttons {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.address-div-button {
+  background: #42c4f0;
+  margin-left: 1rem;
+  margin-right: 1rem;
+  margin-top: 1.5rem;
+}
+.container {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-top: 1rem;
+  margin-bottom: 2rem;
+}

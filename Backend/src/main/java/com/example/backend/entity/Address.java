@@ -9,6 +9,7 @@ import lombok.Setter;
 @Getter
 public class Address {
     private String id;
+    private String userId;
     private String city;
     private String street;
     private String number;
