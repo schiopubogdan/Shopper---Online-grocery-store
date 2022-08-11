@@ -58,4 +58,20 @@ public class AddressRepository {
         }
         return results;
     }
+    public Address findByUserId(String id) throws ExecutionException, InterruptedException {
+        List<Address> addresses = new ArrayList<>();
+        Firestore dbFirestore = FirestoreClient.getFirestore();
+        ApiFuture<QuerySnapshot> future = dbFirestore.collection(COLLECTION_NAME).get();
+        List<QueryDocumentSnapshot> documents = future.get().getDocuments();
+        for (QueryDocumentSnapshot document : documents) {
+            addresses.add(document.toObject(Address.class));
+        }
+        Address address = null;
+        for(Address a : addresses) {
+            if(id.equals(a.getUserId())) {
+                address = a;
+            }
+        }
+        return address;
+    }
 }

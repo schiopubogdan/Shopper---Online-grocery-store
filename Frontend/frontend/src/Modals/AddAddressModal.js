@@ -94,7 +94,7 @@ export default function AddAddressModal({ open, onClose }) {
         <div className="input-div">
           Mentions: <input onChange={(e) => setMentions(e.target.value)} />
         </div>
-        <div className="button-div">
+        <div className="button-div-modal">
           <div className="button-div-div">
             {!success && <button onClick={saveAddress}>Save address</button>}
           </div>

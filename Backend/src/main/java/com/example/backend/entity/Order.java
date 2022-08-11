@@ -19,4 +19,5 @@ public class Order {
     private double total;
     private String workerId;
     private String driverId;
+    private String address;
 }

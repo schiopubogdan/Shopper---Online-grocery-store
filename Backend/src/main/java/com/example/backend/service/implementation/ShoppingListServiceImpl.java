@@ -1,10 +1,7 @@
 package com.example.backend.service.implementation;
 
 import com.example.backend.entity.*;
-import com.example.backend.repository.OrderRepository;
-import com.example.backend.repository.ProductRepository;
-import com.example.backend.repository.CartProductRepository;
-import com.example.backend.repository.ShoppingListRepository;
+import com.example.backend.repository.*;
 import com.example.backend.service.ShoppingListService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -24,6 +21,8 @@ public class ShoppingListServiceImpl implements ShoppingListService {
     private CartProductRepository shoppingListProductRepository;
     @Autowired
     private OrderRepository orderRepository;
+    @Autowired
+    private AddressRepository addressRepository;
 
 
     @Override
@@ -169,15 +168,24 @@ public class ShoppingListServiceImpl implements ShoppingListService {
     @Override
     public String finalizeOrder(String userId) throws ExecutionException, InterruptedException {
         ShoppingList shoppingList = shoppingListRepository.findUserShoppingList(userId);
+        Address clientAddress = addressRepository.findByUserId(userId);
+        StringBuilder address = new StringBuilder("");
+        if(clientAddress == null) {
+            //
+        } else {
+            address.append( "City: " + clientAddress.getCity() + ", Street: " + clientAddress.getStreet() + ", Number: " + clientAddress.getNumber() + ", Mentions: " + clientAddress.getMentions());
+        }
         if(shoppingList.getProducts().isEmpty()){
             return("Shopping cart empty. No order created");
         } else {
+            String orderAddress = address.toString();
             Order order = new Order();
             order.setUserId(userId);
             order.setProducts(shoppingList.getProducts());
             order.setDate(new Date());
             order.setStatus(Status.PAID);
             order.setTotal(shoppingList.getTotal() + 14.99);
+            order.setAddress(orderAddress);
             orderRepository.save(order);
             shoppingList.setProducts(new ArrayList<>());
             shoppingList.setTotal(0);

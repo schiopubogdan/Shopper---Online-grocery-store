@@ -129,7 +129,7 @@ export default function ModifyAddressModal({
           </div>
         </div>
 
-        <div className="button-div">
+        <div className="button-div-modal">
           <div className="button-div-div">
             {!success && (
               <button onClick={modifyAddress}>Update address</button>

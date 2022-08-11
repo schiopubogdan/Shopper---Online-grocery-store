@@ -6,10 +6,24 @@ import "./Cart.css";
 import CartProduct from "./CartProduct";
 import CartPrice from "./CartPrice";
 import CartClear from "./CartClear";
+import CheckAddressModal from "./Modals/CheckAddressModal";
 
 export default function ShoppingCart() {
   const [products, setProducts] = useState(null);
   const [itemsPrice, setItemsPrice] = useState();
+  const [addressSelected, setAddressSelected] = useState(false);
+  const [modal, setModal] = useState(false);
+
+  function checkAddress() {
+    if (addressSelected === false) {
+      //
+      console.log("Address not selected");
+      setModal(true);
+    } else {
+      console.log("Address selected");
+      finalizeOrder();
+    }
+  }
 
   function finalizeOrder() {
     let id = localStorage.getItem("userId");
@@ -80,11 +94,16 @@ export default function ShoppingCart() {
             </div>
             <hr className="dropdown-divider" />
             <div className="cart-footer">
-              <Button className="checkout-button" onClick={finalizeOrder}>
+              <Button className="checkout-button" onClick={checkAddress}>
                 Finalize order
               </Button>
             </div>
           </div>
+          <CheckAddressModal
+            open={modal}
+            onClose={() => setModal(false)}
+            onCheck={() => setAddressSelected(true)}
+          />
         </div>
       </div>
     </div>
