@@ -7,6 +7,7 @@ import com.example.backend.service.OrderService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.Date;
 import java.util.List;
 import java.util.concurrent.ExecutionException;
 
@@ -57,6 +58,7 @@ public class OrderServiceImpl implements OrderService {
         }
         if(order.getStatus().equals(Status.READY) ) {
             order.setStatus(Status.DELIVERED);
+            order.setDeliveryDate(new Date());
             order.setDriverId(driverId);
             orderRepository.updateById(order);
             return "Order promoted to DELIVERED";

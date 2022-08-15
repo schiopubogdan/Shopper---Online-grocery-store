@@ -4,9 +4,13 @@ import axios from "axios";
 import "./Worker.css";
 import "./Card.css";
 import "./App.css";
+import SeeProductsModal from "./Modals/SeeProductsModal";
 
 export default function WorkerInprogress() {
   const [orders, setOrders] = useState(null);
+  const [modal, setModal] = useState(false);
+  const [products, setProducts] = useState(null);
+
   useEffect(() => {
     const getOrders = async () => {
       try {
@@ -33,6 +37,7 @@ export default function WorkerInprogress() {
       workerId: workerId,
       driverId: null,
     };
+
     axios
       .post("http://localhost:8080/api/order/promote", dto)
       .then((res) => {
@@ -46,6 +51,10 @@ export default function WorkerInprogress() {
         console.log(error);
       });
     window.location.reload();
+  }
+  function seeProducts(products) {
+    setProducts(products);
+    setModal(true);
   }
 
   if (orders === null) {
@@ -78,7 +87,9 @@ export default function WorkerInprogress() {
                     <td>
                       {localStorage.getItem("role") === "worker" &&
                         localStorage.getItem("userId") === order.workerId && (
-                          <button>SEE PRODUCTS</button>
+                          <button onClick={() => seeProducts(order.products)}>
+                            SEE PRODUCTS
+                          </button>
                         )}
                       {localStorage.getItem("role") === "worker" &&
                         localStorage.getItem("userId") !== order.workerId && (
@@ -110,6 +121,11 @@ export default function WorkerInprogress() {
               <tfoot>Total number of orders: {orders.length}</tfoot>
             </table>
           </div>
+          <SeeProductsModal
+            open={modal}
+            onClose={() => setModal(false)}
+            products={products}
+          />
         </div>
       </div>
     </div>

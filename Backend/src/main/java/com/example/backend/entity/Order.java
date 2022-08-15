@@ -16,6 +16,7 @@ public class Order {
     private List<CartProduct> products;
     private Status status;
     private Date date;
+    private Date deliveryDate;
     private double total;
     private String workerId;
     private String driverId;

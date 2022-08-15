@@ -1,0 +1,11 @@
+.close-modal {
+  justify-content: flex-end;
+  float: right;
+}
+.close-modal-div {
+  height: 1rem;
+}
+
+.modal-title {
+  display: inline-block;
+}

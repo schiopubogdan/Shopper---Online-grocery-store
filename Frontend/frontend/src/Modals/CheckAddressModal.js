@@ -43,6 +43,10 @@ export default function CheckAddressModal({ open, onClose, onCheck }) {
     };
     getAddress();
   }, []);
+  function selectAddress() {
+    onCheck();
+    onClose();
+  }
   if (address === null) {
     return <div>No address</div>;
   }
@@ -64,7 +68,7 @@ export default function CheckAddressModal({ open, onClose, onCheck }) {
                 {address.number}
               </div>
               <div>
-                <button onClick={onCheck}>Select this one</button>
+                <button onClick={() => selectAddress()}>Select this one</button>
                 <a href="/profile">
                   <button>Change address</button>
                 </a>
