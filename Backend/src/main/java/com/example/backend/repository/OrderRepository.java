@@ -1,6 +1,7 @@
 package com.example.backend.repository;
 
 import com.example.backend.entity.Order;
+import com.example.backend.entity.Status;
 import com.google.api.core.ApiFuture;
 import com.google.cloud.firestore.*;
 import com.google.firebase.cloud.FirestoreClient;
@@ -56,5 +57,23 @@ public class OrderRepository {
             orders.add(document.toObject(Order.class));
         }
         return orders;
+    }
+    public List<Order> findByStatus(String status) throws ExecutionException, InterruptedException {
+        List<Order> orders = new ArrayList<>();
+        Firestore dbFirestore = FirestoreClient.getFirestore();
+        ApiFuture<QuerySnapshot> future = dbFirestore.collection(COLLECTION_NAME).get();
+        List<QueryDocumentSnapshot> documents = future.get().getDocuments();
+        for (QueryDocumentSnapshot document : documents) {
+            orders.add(document.toObject(Order.class));
+        }
+        List<Order> filteredOrders = new ArrayList<>();
+        Status orderStatus = Status.valueOf(status.toUpperCase());
+
+        for(Order o : orders) {
+            if(o.getStatus().equals(orderStatus)) {
+                filteredOrders.add(o);
+            }
+        }
+        return filteredOrders;
     }
 }

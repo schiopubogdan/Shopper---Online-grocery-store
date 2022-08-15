@@ -24,6 +24,12 @@ public class OrderController {
 
         return ResponseEntity.status(HttpStatus.OK).body(orderService.findById(id));
     }
+    @GetMapping("/get-by-status")
+    public ResponseEntity findByStatus(@RequestParam String status) throws ExecutionException,
+            InterruptedException {
+
+        return ResponseEntity.status(HttpStatus.OK).body(orderService.findByStatus(status));
+    }
     @GetMapping
     public ResponseEntity get() throws ExecutionException,
             InterruptedException {

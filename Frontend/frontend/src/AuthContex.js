@@ -79,9 +79,13 @@ export function AuthProvider({ children }) {
               localStorage.setItem("role", "admin");
               navigate("/homeadmin");
             }
-            if (role == "worker") {
+            if (role === "worker") {
               localStorage.setItem("role", "worker");
-              navigate("/worker");
+              navigate("/worker-paid");
+            }
+            if (role === "driver") {
+              localStorage.setItem("role", "driver");
+              navigate("/worker-ready");
             }
           }
         })

@@ -13,6 +13,10 @@ import TodaysDeal from "./TodaysDeal";
 import Favorites from "./Favorites";
 import ShoppingCart from "./ShoppingCart";
 import Profile from "./Profile";
+import WorkerPaid from "./WorkerPaid";
+import WorkerInprogress from "./WorkerInprogress";
+import WorkerReady from "./WorkerReady";
+import WorkerDelivered from "./WorkerDelivered";
 
 const defaultRoute =
   window.location.pathname === "/" ? <Navigate to="/home" /> : undefined;
@@ -34,6 +38,10 @@ function App() {
         <Route exact path="/favorites" element={<Favorites />} />
         <Route exact path="/shopping" element={<ShoppingCart />} />
         <Route exact path="/profile" element={<Profile />} />
+        <Route exact path="/worker-paid" element={<WorkerPaid />} />
+        <Route exact path="/worker-inprogress" element={<WorkerInprogress />} />
+        <Route exact path="/worker-ready" element={<WorkerReady />} />
+        <Route exact path="/worker-delivered" element={<WorkerDelivered />} />
       </Routes>
       {defaultRoute}
     </AuthProvider>

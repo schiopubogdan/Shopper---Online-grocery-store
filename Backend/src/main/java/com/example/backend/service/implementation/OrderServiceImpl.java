@@ -55,12 +55,17 @@ public class OrderServiceImpl implements OrderService {
             orderRepository.updateById(order);
             return "Order promoted to READY";
         }
-        if(order.getStatus().equals(Status.READY) && order.getDriverId()!= null) {
+        if(order.getStatus().equals(Status.READY) ) {
             order.setStatus(Status.DELIVERED);
             order.setDriverId(driverId);
             orderRepository.updateById(order);
             return "Order promoted to DELIVERED";
         }
         return "";
+    }
+
+    @Override
+    public List<Order> findByStatus(String status) throws ExecutionException, InterruptedException {
+       return orderRepository.findByStatus(status);
     }
 }
