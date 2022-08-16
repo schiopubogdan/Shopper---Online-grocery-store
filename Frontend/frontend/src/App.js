@@ -12,11 +12,14 @@ import Product from "./Product";
 import TodaysDeal from "./TodaysDeal";
 import Favorites from "./Favorites";
 import ShoppingCart from "./ShoppingCart";
-import Profile from "./Profile";
+import ClientProfile from "./ClientProfile";
+import ClientHistory from "./ClientHistory";
 import WorkerPaid from "./WorkerPaid";
 import WorkerInprogress from "./WorkerInprogress";
 import WorkerReady from "./WorkerReady";
 import WorkerDelivered from "./WorkerDelivered";
+import Admin from "./Admin";
+import AdminProductManagement from "./AdminProductManagement";
 
 const defaultRoute =
   window.location.pathname === "/" ? <Navigate to="/home" /> : undefined;
@@ -37,11 +40,18 @@ function App() {
         <Route exact path="/deals" element={<TodaysDeal />} />
         <Route exact path="/favorites" element={<Favorites />} />
         <Route exact path="/shopping" element={<ShoppingCart />} />
-        <Route exact path="/profile" element={<Profile />} />
+        <Route exact path="/profile" element={<ClientProfile />} />
+        <Route exact path="/history" element={<ClientHistory />} />
         <Route exact path="/worker-paid" element={<WorkerPaid />} />
         <Route exact path="/worker-inprogress" element={<WorkerInprogress />} />
         <Route exact path="/worker-ready" element={<WorkerReady />} />
         <Route exact path="/worker-delivered" element={<WorkerDelivered />} />
+        <Route exact path="/admin" element={<Admin />} />
+        <Route
+          exact
+          path="/admin-prod-man"
+          element={<AdminProductManagement />}
+        />
       </Routes>
       {defaultRoute}
     </AuthProvider>

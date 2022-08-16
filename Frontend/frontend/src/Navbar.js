@@ -188,7 +188,7 @@ export default function Navbar() {
                     My profile
                   </Dropdown.Item>
 
-                  <Dropdown.Item href="/orders" eventKey="2">
+                  <Dropdown.Item href="/history" eventKey="2">
                     My orders
                   </Dropdown.Item>
                   <Dropdown.Item href="/coupons" eventKey="3">

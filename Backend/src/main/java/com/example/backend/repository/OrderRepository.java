@@ -76,4 +76,20 @@ public class OrderRepository {
         }
         return filteredOrders;
     }
+    public List<Order> findByUserId(String id) throws ExecutionException, InterruptedException {
+        List<Order> orders = new ArrayList<>();
+        Firestore dbFirestore = FirestoreClient.getFirestore();
+        ApiFuture<QuerySnapshot> future = dbFirestore.collection(COLLECTION_NAME).get();
+        List<QueryDocumentSnapshot> documents = future.get().getDocuments();
+        for (QueryDocumentSnapshot document : documents) {
+            orders.add(document.toObject(Order.class));
+        }
+        List<Order> filteredOrders = new ArrayList<>();
+        for(Order o : orders) {
+            if(o.getUserId().equals(id)) {
+                filteredOrders.add(o);
+            }
+        }
+        return filteredOrders;
+    }
 }

@@ -18,4 +18,5 @@ public interface OrderService {
     List<Order> findAll() throws ExecutionException, InterruptedException;
     String promote(String id, String workerId, String driverId) throws ExecutionException, InterruptedException;
     List<Order> findByStatus(String status) throws ExecutionException, InterruptedException;
+    List<Order> findByUserId(String id) throws ExecutionException, InterruptedException;
 }

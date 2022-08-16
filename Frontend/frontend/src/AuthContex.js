@@ -77,7 +77,7 @@ export function AuthProvider({ children }) {
             }
             if (role === "admin") {
               localStorage.setItem("role", "admin");
-              navigate("/homeadmin");
+              navigate("/admin");
             }
             if (role === "worker") {
               localStorage.setItem("role", "worker");

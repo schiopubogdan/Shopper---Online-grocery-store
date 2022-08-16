@@ -70,4 +70,9 @@ public class OrderServiceImpl implements OrderService {
     public List<Order> findByStatus(String status) throws ExecutionException, InterruptedException {
        return orderRepository.findByStatus(status);
     }
+
+    @Override
+    public List<Order> findByUserId(String id) throws ExecutionException, InterruptedException {
+        return orderRepository.findByUserId(id);
+    }
 }
