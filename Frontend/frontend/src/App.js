@@ -14,12 +14,14 @@ import Favorites from "./Favorites";
 import ShoppingCart from "./ShoppingCart";
 import ClientProfile from "./ClientProfile";
 import ClientHistory from "./ClientHistory";
+import ClientCoupons from "./ClientCoupons";
 import WorkerPaid from "./WorkerPaid";
 import WorkerInprogress from "./WorkerInprogress";
 import WorkerReady from "./WorkerReady";
 import WorkerDelivered from "./WorkerDelivered";
 import Admin from "./Admin";
 import AdminProductManagement from "./AdminProductManagement";
+import AdminEmployeeManagement from "./AdminEmployeeManagement";
 
 const defaultRoute =
   window.location.pathname === "/" ? <Navigate to="/home" /> : undefined;
@@ -42,6 +44,7 @@ function App() {
         <Route exact path="/shopping" element={<ShoppingCart />} />
         <Route exact path="/profile" element={<ClientProfile />} />
         <Route exact path="/history" element={<ClientHistory />} />
+        <Route exact path="/coupons" element={<ClientCoupons />} />
         <Route exact path="/worker-paid" element={<WorkerPaid />} />
         <Route exact path="/worker-inprogress" element={<WorkerInprogress />} />
         <Route exact path="/worker-ready" element={<WorkerReady />} />
@@ -51,6 +54,11 @@ function App() {
           exact
           path="/admin-prod-man"
           element={<AdminProductManagement />}
+        />
+        <Route
+          exact
+          path="/admin-empl-man"
+          element={<AdminEmployeeManagement />}
         />
       </Routes>
       {defaultRoute}

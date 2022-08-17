@@ -46,7 +46,7 @@ export default function AdminNavbar() {
                 <a
                   className="nav-link active"
                   aria-current="page"
-                  href="/worker-inprogress"
+                  href="/admin-empl-man"
                 >
                   EMPLOYEE MANAGEMENT
                 </a>

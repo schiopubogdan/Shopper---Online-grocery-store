@@ -1,0 +1,20 @@
+.coupon-body {
+  width: 22rem;
+  height: 2.5rem;
+  border-style: groove;
+  border-radius: 5px;
+  margin-left: 1rem;
+  margin-top: 0.5rem;
+}
+.coupon-code {
+  text-align: center;
+  width: 40%;
+  height: 2.5rem;
+  display: inline-block;
+}
+.coupon-discount {
+  text-align: center;
+  width: 60%;
+  height: 2.5rem;
+  display: inline-block;
+}

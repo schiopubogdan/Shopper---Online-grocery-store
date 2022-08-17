@@ -40,4 +40,9 @@ public class UserRoleServiceImpl implements UserRoleService {
     public List<UserRole> findAll() throws ExecutionException, InterruptedException {
         return userRoleRepository.findAll();
     }
+
+    @Override
+    public List<UserRole> getEmployees() throws ExecutionException, InterruptedException {
+        return userRoleRepository.getEmployees();
+    }
 }

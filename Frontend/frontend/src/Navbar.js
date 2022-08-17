@@ -138,11 +138,7 @@ export default function Navbar() {
                       </li>
                     </ul>
                   </li>
-                  <li className="nav-item">
-                    <a className="nav-link" href="/deals">
-                      Today's deal
-                    </a>
-                  </li>
+
                   <li className="nav-item">
                     <a
                       className="nav-link active"
@@ -322,11 +318,7 @@ export default function Navbar() {
                       </li>
                     </ul>
                   </li>
-                  <li className="nav-item">
-                    <a className="nav-link" href="/deals">
-                      Today's deal
-                    </a>
-                  </li>
+
                   <li className="nav-item">
                     <a className="nav-link disabled">
                       Favorites{" "}

@@ -25,7 +25,6 @@ export default function ClientHistory() {
         const deliveredO = [];
         const ongoingO = [];
         for (var i = 0; i < resp.data.length; i++) {
-          console.log(resp.data[i].status);
           if (resp.data[i].status === "DELIVERED") {
             deliveredO.push(resp.data[i]);
           } else {

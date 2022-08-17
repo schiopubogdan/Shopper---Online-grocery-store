@@ -1,0 +1,27 @@
+.redeem-coupon-body {
+  width: 38rem;
+  height: 2.5rem;
+  border-style: groove;
+  border-radius: 5px;
+  margin-left: 1rem;
+  margin-top: 0.5rem;
+}
+.redeem-coupon-discount {
+  width: 40%;
+  height: 2.5rem;
+  display: inline-block;
+}
+.redeem-coupon-streak {
+  width: 40%;
+  height: 2.5rem;
+  display: inline-block;
+}
+.redeem-coupon-button {
+  align-items: center;
+  width: 20%;
+  height: 2.5rem;
+  display: inline-block;
+}
+/* .reedem-btn {
+  height: 2rem;
+} */

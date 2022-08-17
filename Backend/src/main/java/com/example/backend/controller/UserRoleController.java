@@ -28,6 +28,11 @@ public class UserRoleController {
             InterruptedException {
         return ResponseEntity.status(HttpStatus.OK).body(userRoleService.findAll());
     }
+    @GetMapping("/employees")
+    public ResponseEntity getEmployees() throws ExecutionException,
+            InterruptedException {
+        return ResponseEntity.status(HttpStatus.OK).body(userRoleService.getEmployees());
+    }
 
     @PostMapping
     public ResponseEntity save(@RequestBody UserRole dto) throws ExecutionException,

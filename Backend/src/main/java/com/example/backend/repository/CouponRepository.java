@@ -1,7 +1,7 @@
 package com.example.backend.repository;
 
-import com.example.backend.entity.Product;
-import com.example.backend.entity.UserRole;
+import com.example.backend.entity.Address;
+import com.example.backend.entity.Coupon;
 import com.google.api.core.ApiFuture;
 import com.google.cloud.firestore.*;
 import com.google.firebase.cloud.FirestoreClient;
@@ -12,24 +12,28 @@ import java.util.List;
 import java.util.concurrent.ExecutionException;
 
 @Repository
-public class UserRoleRepository {
-    private static  final String COLLECTION_NAME = "user_details";
+public class CouponRepository {
+    private static  final String COLLECTION_NAME = "coupon_details";
 
-    public UserRole save(UserRole dto) throws ExecutionException, InterruptedException {
+    public Coupon save(Coupon dto) throws ExecutionException, InterruptedException {
         Firestore dbFirestore = FirestoreClient.getFirestore();
-        dbFirestore.collection(COLLECTION_NAME).document(dto.getId()).set(dto);
+        DocumentReference addedDocRef = dbFirestore.collection(COLLECTION_NAME).document();
+        String idCurrent = addedDocRef.getId();
+        dto.setId(idCurrent);
+        ApiFuture<WriteResult> collectionApiFuture =
+                dbFirestore.collection(COLLECTION_NAME).document(dto.getId()).set(dto);
         return dto;
     }
-    public UserRole findByUserId(String id) throws ExecutionException, InterruptedException {
+    public Coupon findById(String id) throws ExecutionException, InterruptedException {
         Firestore dbFirestore = FirestoreClient.getFirestore();
         DocumentReference documentReference = dbFirestore.collection(COLLECTION_NAME).document(id);
         ApiFuture<DocumentSnapshot> future = documentReference.get();
         DocumentSnapshot documentSnapshot = future.get();
-        UserRole userRole = null;
+        Coupon coupon = null;
         if(documentSnapshot.exists())
         {
-            userRole = documentSnapshot.toObject(UserRole.class);
-            return userRole;
+            coupon = documentSnapshot.toObject(Coupon.class);
+            return coupon;
         }
         return null;
     }
@@ -38,36 +42,36 @@ public class UserRoleRepository {
         ApiFuture<WriteResult> writeResult = dbFirestore.collection(COLLECTION_NAME).document(id).delete();
         return "Document with ID "+ id+" has been deleted";
     }
-    public UserRole updateById(UserRole dto) throws ExecutionException, InterruptedException {
+    public Coupon updateById(Coupon dto) throws ExecutionException, InterruptedException {
         Firestore dbFirestore = FirestoreClient.getFirestore();
         ApiFuture<WriteResult> collectionsApiFuture =
                 dbFirestore.collection(COLLECTION_NAME).document(dto.getId()).set(dto);
         return dto;
     }
-    public List<UserRole> findAll() throws ExecutionException, InterruptedException {
-        List<UserRole> results = new ArrayList<>();
+    public List<Coupon> findAll() throws ExecutionException, InterruptedException {
+        List<Coupon> results = new ArrayList<>();
         Firestore dbFirestore = FirestoreClient.getFirestore();
         ApiFuture<QuerySnapshot> future = dbFirestore.collection(COLLECTION_NAME).get();
         List<QueryDocumentSnapshot> documents = future.get().getDocuments();
         for (QueryDocumentSnapshot document : documents) {
-            results.add(document.toObject(UserRole.class));
+            results.add(document.toObject(Coupon.class));
         }
         return results;
     }
-    public List<UserRole> getEmployees() throws ExecutionException, InterruptedException {
-        List<UserRole> results = new ArrayList<>();
+    public List<Coupon> findByUserId(String id) throws ExecutionException, InterruptedException {
+        List<Coupon> coupons = new ArrayList<>();
+        List<Coupon> userCoupons = new ArrayList<>();
         Firestore dbFirestore = FirestoreClient.getFirestore();
         ApiFuture<QuerySnapshot> future = dbFirestore.collection(COLLECTION_NAME).get();
         List<QueryDocumentSnapshot> documents = future.get().getDocuments();
         for (QueryDocumentSnapshot document : documents) {
-            results.add(document.toObject(UserRole.class));
+            coupons.add(document.toObject(Coupon.class));
         }
-        List<UserRole> employees = new ArrayList<>();
-        for(UserRole u : results) {
-            if(u.getRole().equals("worker") || u.getRole().equals("driver")) {
-                employees.add(u);
+        for(Coupon c : coupons) {
+            if(id.equals(c.getUserId())) {
+                userCoupons.add(c);
             }
         }
-        return employees;
+        return userCoupons;
     }
 }

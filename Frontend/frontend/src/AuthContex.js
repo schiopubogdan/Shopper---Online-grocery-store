@@ -20,6 +20,29 @@ export function AuthProvider({ children }) {
   const [loading, setLoading] = useState(true);
   const navigate = useNavigate();
 
+  async function registerEmployee(email, password, role) {
+    try {
+      const user = await createUserWithEmailAndPassword(auth, email, password);
+      const userJSON = JSON.stringify(user);
+      var json = JSON.parse(userJSON);
+      let item = {
+        id: json.user.uid,
+        email: email,
+        role: role,
+      };
+      axios
+        .post("http://localhost:8080/api/user", item)
+        .then((res) => {
+          if (res.data !== "") {
+          }
+        })
+        .catch((error) => {
+          console.log(error);
+        });
+    } catch (error) {
+      //
+    }
+  }
   async function register(email, password) {
     try {
       const user = await createUserWithEmailAndPassword(auth, email, password);
@@ -37,7 +60,7 @@ export function AuthProvider({ children }) {
         .post("http://localhost:8080/api/user", item)
         .then((res) => {
           if (res.data !== "") {
-            alert("Inregistrare cu succes!");
+            alert("Successfully registered!");
           }
         })
         .catch((error) => {
@@ -117,6 +140,7 @@ export function AuthProvider({ children }) {
   const value = {
     currentUser,
     register,
+    registerEmployee,
     login,
     logout,
     resetPassword,

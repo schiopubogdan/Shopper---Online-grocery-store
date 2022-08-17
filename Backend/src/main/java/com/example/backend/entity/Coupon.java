@@ -7,10 +7,9 @@ import lombok.Setter;
 @Data
 @Setter
 @Getter
-public class UserRole {
+public class Coupon {
     private String id;
-    private String email;
-    private String role;
-    private int orders;
-
+    private String userId;
+    private double procent;
+    private String code;
 }

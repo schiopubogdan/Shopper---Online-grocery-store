@@ -13,4 +13,5 @@ public interface UserRoleService {
     String deleteById(String id) throws ExecutionException, InterruptedException;
     UserRole updateById(UserRole dto) throws ExecutionException, InterruptedException;
     List<UserRole> findAll() throws ExecutionException, InterruptedException;
+    List<UserRole> getEmployees() throws ExecutionException, InterruptedException;
 }
