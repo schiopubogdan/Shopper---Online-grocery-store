@@ -1,8 +1,9 @@
 package com.example.backend.service.implementation;
 
-import com.example.backend.entity.Order;
-import com.example.backend.entity.Status;
+import com.example.backend.entity.*;
 import com.example.backend.repository.OrderRepository;
+import com.example.backend.repository.StorageListRepository;
+import com.example.backend.repository.StorageProductRepository;
 import com.example.backend.service.OrderService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -16,6 +17,10 @@ public class OrderServiceImpl implements OrderService {
 
     @Autowired
     private OrderRepository orderRepository;
+    @Autowired
+    private StorageProductRepository storageProductRepository;
+    @Autowired
+    private StorageListRepository storageListRepository;
 
     @Override
     public Order save(Order order) throws ExecutionException, InterruptedException {
@@ -57,6 +62,23 @@ public class OrderServiceImpl implements OrderService {
             return "Order promoted to READY";
         }
         if(order.getStatus().equals(Status.READY) ) {
+            //creare de StorageProducts si adaugare in StorageList-ul clientului
+            StorageList storageList = storageListRepository.findUserStorageList(order.getUserId());
+            List<CartProduct> products = order.getProducts();
+            List<StorageProduct> products1 = storageList.getProducts();
+            for(CartProduct c : products) {
+                if(c.isHasExpirationDate()) {
+                    StorageProduct storageProduct = new StorageProduct();
+                    storageProduct.setName(c.getName());
+                    storageProduct.setBrand(c.getBrand());
+                    storageProduct.setWeight(c.getWeight());
+                    storageProduct.setMeasure(c.getMeasure());
+                    storageProductRepository.save(storageProduct);
+                    products1.add(storageProduct);
+                }
+            }
+            storageList.setProducts(products1);
+            storageListRepository.save(storageList);
             order.setStatus(Status.DELIVERED);
             order.setDeliveryDate(new Date());
             order.setDriverId(driverId);

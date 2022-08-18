@@ -23,7 +23,7 @@ export default function Navbar() {
         <div>
           <nav className="navbar navbar-expand-lg bg-light">
             <div className="container-fluid">
-              <a className="navbar-brand fw-bold fs-4" href="#">
+              <a className="navbar-brand fw-bold fs-4" href="/home">
                 NUME SITE
               </a>
               <button
