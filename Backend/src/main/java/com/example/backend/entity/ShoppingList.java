@@ -14,5 +14,8 @@ public class ShoppingList {
     private String userId;
     private List<CartProduct> products;
     private double total;
+    private boolean couponUsed;
+    private String couponCode;
+    private double discount;
 
 }

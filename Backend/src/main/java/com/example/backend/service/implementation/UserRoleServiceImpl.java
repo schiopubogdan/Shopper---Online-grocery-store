@@ -45,4 +45,11 @@ public class UserRoleServiceImpl implements UserRoleService {
     public List<UserRole> getEmployees() throws ExecutionException, InterruptedException {
         return userRoleRepository.getEmployees();
     }
+
+    @Override
+    public UserRole updateOrdersStreak(UserRole dto) throws ExecutionException, InterruptedException {
+        UserRole userRole = userRoleRepository.findByUserId(dto.getId());
+        userRole.setOrders(userRole.getOrders()-dto.getOrders());
+        return userRoleRepository.updateById(userRole);
+    }
 }

@@ -1,5 +1,6 @@
 package com.example.backend.service;
 
+import com.example.backend.dto.CouponDTO;
 import com.example.backend.entity.ShoppingList;
 import com.example.backend.entity.CartProduct;
 import org.springframework.stereotype.Component;
@@ -19,6 +20,7 @@ public interface ShoppingListService {
     String updateProductQuantity(String productId, String userId, int quantity) throws ExecutionException, InterruptedException;
     String clear(String userId) throws ExecutionException, InterruptedException;
     String finalizeOrder(String userId) throws ExecutionException, InterruptedException;
+    ShoppingList applyCoupon(CouponDTO dto) throws ExecutionException, InterruptedException;
 
 
 }

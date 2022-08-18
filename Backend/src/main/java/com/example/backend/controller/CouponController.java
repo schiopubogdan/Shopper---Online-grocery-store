@@ -1,5 +1,6 @@
 package com.example.backend.controller;
 
+import com.example.backend.dto.CouponDTO;
 import com.example.backend.entity.Coupon;
 import com.example.backend.service.CouponService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -27,8 +28,8 @@ public class CouponController {
             InterruptedException {
         return ResponseEntity.status(HttpStatus.OK).body(couponService.save(dto));
     }
-    @PostMapping("/create")
-    public ResponseEntity create(@RequestBody Coupon dto) throws ExecutionException,
+    @PostMapping("/redeem")
+    public ResponseEntity redeem(@RequestBody CouponDTO dto) throws ExecutionException,
             InterruptedException {
         return ResponseEntity.status(HttpStatus.OK).body(couponService.create(dto));
     }
@@ -47,5 +48,10 @@ public class CouponController {
             InterruptedException {
 
         return ResponseEntity.status(HttpStatus.OK).body(couponService.findByUserId(id));
+    }
+    @PostMapping("/check")
+    public ResponseEntity checkCouponCode(@RequestParam String couponCode) throws ExecutionException,
+            InterruptedException {
+        return ResponseEntity.status(HttpStatus.OK).body(couponService.checkCouponCode(couponCode));
     }
 }

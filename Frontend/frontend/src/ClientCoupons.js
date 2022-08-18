@@ -32,6 +32,73 @@ export default function ClientCoupons() {
     };
     getCoupons();
   }, []);
+  function redeemCoupon10() {
+    let clientId = localStorage.getItem("userId");
+    let dto = {
+      userId: clientId,
+      procent: 10,
+      orders: 5,
+      code: "",
+    };
+    axios
+      .post("http://localhost:8080/api/coupon/redeem", dto)
+      .then((res) => {
+        if (res.data === "") {
+          console.log("X");
+        } else {
+          console.log("Coupon redeemed");
+        }
+      })
+      .catch((error) => {
+        console.log(error);
+      });
+    alert("Coupon redeemed");
+  }
+  function redeemCoupon15() {
+    let clientId = localStorage.getItem("userId");
+    let dto = {
+      userId: clientId,
+      procent: 15,
+      orders: 7,
+      code: "",
+    };
+    axios
+      .post("http://localhost:8080/api/coupon/redeem", dto)
+      .then((res) => {
+        if (res.data === "") {
+          console.log("X");
+        } else {
+          console.log("Coupon redeemed");
+        }
+      })
+      .catch((error) => {
+        console.log(error);
+      });
+    alert("Coupon redeemed");
+  }
+  function redeemCoupon20() {
+    let clientId = localStorage.getItem("userId");
+    let dto = {
+      userId: clientId,
+      procent: 20,
+      orders: 10,
+      code: "",
+    };
+    axios
+      .post("http://localhost:8080/api/coupon/redeem", dto)
+      .then((res) => {
+        if (res.data === "") {
+          console.log("X");
+        } else {
+          console.log("Coupon redeemed");
+        }
+      })
+      .catch((error) => {
+        console.log(error);
+      });
+
+    alert("Coupon redeemed");
+  }
   if (coupons === null || client === null) {
     return <div>No coupons available</div>;
   }
@@ -67,16 +134,19 @@ export default function ClientCoupons() {
               discount={"10"}
               streak={"5"}
               clientStreak={client.orders}
+              redeemCoupon={redeemCoupon10}
             />
             <RedeemCoupon
               discount={"15"}
               streak={"7"}
               clientStreak={client.orders}
+              redeemCoupon={redeemCoupon15}
             />
             <RedeemCoupon
               discount={"20"}
               streak={"10"}
               clientStreak={client.orders}
+              redeemCoupon={redeemCoupon20}
             />
           </div>
         </div>

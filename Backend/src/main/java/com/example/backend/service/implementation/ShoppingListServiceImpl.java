@@ -1,5 +1,6 @@
 package com.example.backend.service.implementation;
 
+import com.example.backend.dto.CouponDTO;
 import com.example.backend.entity.*;
 import com.example.backend.repository.*;
 import com.example.backend.service.ShoppingListService;
@@ -23,6 +24,10 @@ public class ShoppingListServiceImpl implements ShoppingListService {
     private OrderRepository orderRepository;
     @Autowired
     private AddressRepository addressRepository;
+    @Autowired
+    private UserRoleRepository userRoleRepository;
+    @Autowired
+    private CouponRepository couponRepository;
 
 
     @Override
@@ -178,6 +183,12 @@ public class ShoppingListServiceImpl implements ShoppingListService {
         if(shoppingList.getProducts().isEmpty()){
             return("Shopping cart empty. No order created");
         } else {
+            UserRole userRole = userRoleRepository.findByUserId(userId);
+            userRole.setOrders(userRole.getOrders() + 1);
+            userRoleRepository.updateById(userRole);
+            shoppingList.setCouponUsed(false);
+            shoppingList.setCouponCode("");
+            shoppingList.setDiscount(0);
             String orderAddress = address.toString();
             Order order = new Order();
             order.setUserId(userId);
@@ -192,5 +203,20 @@ public class ShoppingListServiceImpl implements ShoppingListService {
             shoppingListRepository.updateById(shoppingList);
             return "Order has been received";
         }
+    }
+
+    @Override
+    public ShoppingList applyCoupon(CouponDTO dto) throws ExecutionException, InterruptedException {
+        ShoppingList shoppingList = shoppingListRepository.findUserShoppingList(dto.getUserId());
+        shoppingList.setCouponUsed(true);
+        shoppingList.setCouponCode(dto.getCode());
+        double total = shoppingList.getTotal();
+        double discount = (total * dto.getProcent())/100;
+        double totalAfterDiscount = total - discount;
+        shoppingList.setDiscount(discount);
+        shoppingList.setTotal(totalAfterDiscount);
+        Coupon coupon = couponRepository.checkCouponCode(dto.getCode());
+        String s = couponRepository.deleteById(coupon.getId());
+        return shoppingListRepository.updateById(shoppingList);
     }
 }

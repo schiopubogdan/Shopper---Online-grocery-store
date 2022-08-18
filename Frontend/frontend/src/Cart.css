@@ -33,3 +33,23 @@
 .thicker {
   font-weight: 900;
 }
+.cart-coupon-first {
+  display: inline-block;
+  margin-right: 3rem;
+}
+.cart-coupon-second {
+  display: inline-block;
+  margin-left: 2rem;
+}
+.cart-coupon-third {
+  margin-left: 0.75rem;
+  display: inline-block;
+}
+.cart-coupon-fourth {
+  margin-left: 2rem;
+  display: inline-block;
+}
+.cart-coupon-fifth {
+  margin-left: 2rem;
+  float: right;
+}

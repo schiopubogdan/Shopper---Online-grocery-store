@@ -1,6 +1,6 @@
 package com.example.backend.service;
 
-import com.example.backend.entity.Address;
+import com.example.backend.dto.CouponDTO;
 import com.example.backend.entity.Coupon;
 import org.springframework.stereotype.Component;
 
@@ -15,5 +15,6 @@ public interface CouponService {
     String deleteById(String id) throws ExecutionException, InterruptedException;
     Coupon updateById(Coupon dto) throws ExecutionException, InterruptedException;
     List<Coupon> findAll() throws ExecutionException, InterruptedException;
-    Coupon create(Coupon dto) throws ExecutionException, InterruptedException;
+    Coupon create(CouponDTO dto) throws ExecutionException, InterruptedException;
+    Coupon checkCouponCode(String couponCode) throws ExecutionException, InterruptedException;
 }

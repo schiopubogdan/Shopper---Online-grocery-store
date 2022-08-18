@@ -1,7 +1,10 @@
 package com.example.backend.service.implementation;
 
+import com.example.backend.dto.CouponDTO;
 import com.example.backend.entity.Coupon;
+import com.example.backend.entity.UserRole;
 import com.example.backend.repository.CouponRepository;
+import com.example.backend.repository.UserRoleRepository;
 import com.example.backend.service.CouponService;
 import org.apache.commons.lang3.RandomStringUtils;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -14,6 +17,8 @@ import java.util.concurrent.ExecutionException;
 public class CouponServiceImpl implements CouponService {
     @Autowired
     private CouponRepository couponRepository;
+    @Autowired
+    private UserRoleRepository userRoleRepository;
     @Override
     public Coupon save(Coupon coupon) throws ExecutionException, InterruptedException {
         return couponRepository.save(coupon);
@@ -45,13 +50,23 @@ public class CouponServiceImpl implements CouponService {
     }
 
     @Override
-    public Coupon create(Coupon dto) throws ExecutionException, InterruptedException {
-        Coupon coupon = couponRepository.save(dto);
+    public Coupon create(CouponDTO dto) throws ExecutionException, InterruptedException {
+        UserRole userRole = userRoleRepository.findByUserId(dto.getUserId());
+        userRole.setOrders(userRole.getOrders()- dto.getOrders());
+        userRoleRepository.updateById(userRole);
+        Coupon coupon = new Coupon();
+        coupon.setUserId(dto.getUserId());
+        coupon.setProcent(dto.getProcent());
         int length = 10;
         boolean useLetters = true;
         boolean useNumbers = false;
         String generatedString = RandomStringUtils.random(length, useLetters, useNumbers);
         coupon.setCode(generatedString);
-        return couponRepository.updateById(coupon);
+        return couponRepository.save(coupon);
+    }
+
+    @Override
+    public Coupon checkCouponCode(String couponCode) throws ExecutionException, InterruptedException {
+        return couponRepository.checkCouponCode(couponCode);
     }
 }

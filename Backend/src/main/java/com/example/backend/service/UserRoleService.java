@@ -14,4 +14,5 @@ public interface UserRoleService {
     UserRole updateById(UserRole dto) throws ExecutionException, InterruptedException;
     List<UserRole> findAll() throws ExecutionException, InterruptedException;
     List<UserRole> getEmployees() throws ExecutionException, InterruptedException;
+    UserRole updateOrdersStreak(UserRole dto) throws ExecutionException, InterruptedException;
 }

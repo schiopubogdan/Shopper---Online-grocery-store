@@ -74,4 +74,20 @@ public class CouponRepository {
         }
         return userCoupons;
     }
+    public Coupon checkCouponCode(String couponCode) throws ExecutionException, InterruptedException {
+        List<Coupon> coupons = new ArrayList<>();
+        Firestore dbFirestore = FirestoreClient.getFirestore();
+        ApiFuture<QuerySnapshot> future = dbFirestore.collection(COLLECTION_NAME).get();
+        List<QueryDocumentSnapshot> documents = future.get().getDocuments();
+        for (QueryDocumentSnapshot document : documents) {
+            coupons.add(document.toObject(Coupon.class));
+        }
+        Coupon coupon = null;
+        for(Coupon c : coupons) {
+            if(c.getCode().equals(couponCode)) {
+                coupon = c;
+            }
+        }
+        return coupon;
+    }
 }
