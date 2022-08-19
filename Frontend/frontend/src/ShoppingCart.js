@@ -7,6 +7,7 @@ import CartProduct from "./CartProduct";
 import CartPrice from "./CartPrice";
 import CartClear from "./CartClear";
 import CheckAddressModal from "./Modals/CheckAddressModal";
+import Footer from "./Footer";
 
 export default function ShoppingCart() {
   const [candidateDiscount, setCandidateDiscout] = useState();
@@ -200,6 +201,7 @@ export default function ShoppingCart() {
           />
         </div>
       </div>
+      <Footer />
     </div>
   );
 }

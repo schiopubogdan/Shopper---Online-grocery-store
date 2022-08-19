@@ -1,0 +1,31 @@
+.home-card {
+  border-radius: 10px;
+  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
+  transition: 0.3s;
+  height: 16rem;
+  width: 13rem;
+  display: inline-block;
+  margin: 1rem 1rem 1rem 1rem;
+}
+.home-card:hover {
+  box-shadow: 0 8px 16px 0 rgba(0, 0, 0, 0.2);
+}
+.home-card-up-container {
+  padding: 2px 16px;
+  height: 2rem;
+}
+.home-card-middle-container {
+  padding: 2px 16px;
+  padding-top: 1.5rem;
+  height: 6rem;
+  text-align: center;
+}
+.home-card-down-container {
+  padding: 2px 16px;
+  height: 2rem;
+}
+.vertical-horizontal-center {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}

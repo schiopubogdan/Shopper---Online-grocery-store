@@ -4,6 +4,7 @@ import "./Profile.css";
 import AddAddressModal from "./Modals/AddAddressModal";
 import ModifyAddressModal from "./Modals/ModifyAddressModal";
 import axios from "axios";
+import Footer from "./Footer";
 
 export default function Profile() {
   const [addAddress, setAddAddress] = useState(false);
@@ -92,6 +93,7 @@ export default function Profile() {
           />
         </div>
       </div>
+      <Footer />
     </div>
   );
 }

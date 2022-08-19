@@ -4,6 +4,7 @@ import ProductCardFavorite from "./ProductCardFavorite";
 import "./App.css";
 import "./Card.css";
 import axios from "axios";
+import Footer from "./Footer";
 
 export default function Favorites() {
   const [products, setProducts] = useState(null);
@@ -38,6 +39,7 @@ export default function Favorites() {
           ))}
         </div>
       </div>
+      <Footer />
     </div>
   );
 }

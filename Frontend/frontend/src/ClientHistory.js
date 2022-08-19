@@ -5,6 +5,7 @@ import "./Worker.css";
 import "./Card.css";
 import "./App.css";
 import SeeProductsModal from "./Modals/SeeProductsModal";
+import Footer from "./Footer";
 
 export default function ClientHistory() {
   const [deliveredOrders, setDeliveredOrders] = useState(null);
@@ -124,6 +125,7 @@ export default function ClientHistory() {
           />
         </div>
       </div>
+      <Footer />
     </div>
   );
 }

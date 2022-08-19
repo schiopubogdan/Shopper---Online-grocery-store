@@ -21,7 +21,7 @@ export default function Navbar() {
     <>
       {localStorage.getItem("role") === "client" ? (
         <div>
-          <nav className="navbar navbar-expand-lg bg-light">
+          <nav className="navbar navbar-expand-lg  navbar">
             <div className="container-fluid">
               <a className="navbar-brand fw-bold fs-4" href="/home">
                 NUME SITE
@@ -201,7 +201,7 @@ export default function Navbar() {
         </div>
       ) : (
         <div>
-          <nav className="navbar navbar-expand-lg bg-light">
+          <nav className="navbar navbar-expand-lg navbar">
             <div className="container-fluid">
               <a className="navbar-brand fw-bold fs-4" href="#">
                 NUME SITE

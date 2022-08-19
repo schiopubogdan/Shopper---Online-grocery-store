@@ -23,9 +23,11 @@
   margin-left: 0.8rem;
 }
 .page-grid {
-  padding-top: 1rem;
   background: #fff;
 }
 .cart-button {
   margin-right: 1rem;
+}
+.navbar {
+  background-color: #fff8e7;
 }

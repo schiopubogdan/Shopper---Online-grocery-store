@@ -1,0 +1,24 @@
+.home-presentation-div {
+  border: 2px solid #0d6cf9;
+  border-radius: 5px;
+}
+.home-carousel-div {
+  border: 2px solid #0d6cf9;
+  border-radius: 5px;
+  height: 20rem;
+}
+.home-cards-div {
+  border: 2px solid #0d6cf9;
+  border-radius: 5px;
+  height: 20rem;
+  padding-left: 5.5rem;
+}
+.home-separation-div {
+  background-color: #fff8e7;
+  border: 2px solid #0d6cf9;
+  border-radius: 5px;
+  height: 2.5rem;
+}
+.myclass {
+  display: inline-block;
+}

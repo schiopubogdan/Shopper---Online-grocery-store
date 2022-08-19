@@ -4,6 +4,7 @@ import Navbar from "./Navbar";
 import ProductCard from "./ProductCard";
 import "./Card.css";
 import "./App.css";
+import Footer from "./Footer";
 
 export default function Products() {
   const [products, setProducts] = useState(null);
@@ -36,6 +37,7 @@ export default function Products() {
           ))}
         </div>
       </div>
+      <Footer />
     </div>
   );
 }

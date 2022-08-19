@@ -3,6 +3,7 @@ import Navbar from "./Navbar";
 import axios from "axios";
 import ClientCoupon from "./ClientCoupon";
 import RedeemCoupon from "./RedeemCoupon";
+import Footer from "./Footer";
 
 export default function ClientCoupons() {
   const [coupons, setCoupons] = useState(null);
@@ -151,6 +152,7 @@ export default function ClientCoupons() {
           </div>
         </div>
       </div>
+      <Footer />
     </div>
   );
 }
