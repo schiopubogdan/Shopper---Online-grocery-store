@@ -2,3 +2,18 @@
   background-color: #42c4f0;
   padding: 0rem 6rem;
 }
+.brands {
+  border: 2px solid #0d6cf9;
+  border-radius: 5px;
+  background-color: white;
+}
+.brands-head {
+  width: 100%;
+}
+.brands-body {
+  width: 100%;
+}
+.brand-name {
+  margin-left: 0.75rem;
+  display: inline-block;
+}

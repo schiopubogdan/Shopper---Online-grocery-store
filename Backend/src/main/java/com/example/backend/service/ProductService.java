@@ -15,4 +15,5 @@ public interface ProductService {
     Product updateById(Product dto) throws ExecutionException, InterruptedException;
     List<Product> findAll() throws ExecutionException, InterruptedException;
     List<Product> findByCategory(String category) throws ExecutionException, InterruptedException;
+    List<String> findCategoryBrands(String category) throws ExecutionException, InterruptedException;
 }

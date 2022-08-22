@@ -8,6 +8,8 @@ import CartPrice from "./CartPrice";
 import CartClear from "./CartClear";
 import CheckAddressModal from "./Modals/CheckAddressModal";
 import Footer from "./Footer";
+import { useNavigate } from "react-router-dom";
+import { useLocation } from "react-router";
 
 export default function ShoppingCart() {
   const [candidateDiscount, setCandidateDiscout] = useState();
@@ -21,16 +23,24 @@ export default function ShoppingCart() {
   const [itemsPrice, setItemsPrice] = useState();
   const [addressSelected, setAddressSelected] = useState(false);
   const [modal, setModal] = useState(false);
-  const [discountPrice, setDiscountPrice] = useState(0);
+  const [discountValue, setDiscountValue] = useState(0);
+  const navigate = useNavigate();
+  const location = useLocation();
 
   function checkAddress() {
-    if (addressSelected === false) {
-      //
-      console.log("Address not selected");
-      setModal(true);
+    if (products.length === 0) {
+      alert("Shopping cart is empty");
     } else {
-      console.log("Address selected");
-      finalizeOrder();
+      if (addressSelected === false) {
+        //
+        console.log("Address not selected");
+        setModal(true);
+      } else {
+        console.log("Address selected");
+        //redirectionare catre paymentpage -> itemsPrice
+        const price = parseInt((itemsPrice + 14.99 - discountValue) * 100);
+        navigate("/payment", { state: { price: price } });
+      }
     }
   }
   function useCoupon() {
@@ -77,29 +87,6 @@ export default function ShoppingCart() {
       });
     window.location.reload();
   }
-  function uncheck() {}
-
-  function finalizeOrder() {
-    let id = localStorage.getItem("userId");
-    let dto = {
-      productId: "",
-      userId: id,
-    };
-    axios
-      .post("http://localhost:8080/api/shopping/finalize", dto)
-      .then((res) => {
-        if (res.data === "") {
-          alert("X");
-        } else {
-          alert("Order finalized");
-          setDiscountPrice(0);
-        }
-      })
-      .catch((error) => {
-        console.log(error);
-      });
-    window.location.reload();
-  }
   useEffect(() => {
     const getProducts = async () => {
       try {
@@ -111,7 +98,11 @@ export default function ShoppingCart() {
         setItemsPrice(resp.data.total);
         setCouponUsed(resp.data.couponUsed);
         setCouponCode(resp.data.couponCode);
-        setDiscountPrice(resp.data.discount);
+        setDiscount(resp.data.discount);
+        if (resp.data.discount !== 0) {
+          const value = (resp.data.total * resp.data.discount) / 100;
+          setDiscountValue(value);
+        }
       } catch (err) {
         console.log(err);
       }
@@ -121,6 +112,7 @@ export default function ShoppingCart() {
   if (products === null) {
     return <div>No products available</div>;
   }
+
   return (
     <div>
       <Navbar />
@@ -181,11 +173,24 @@ export default function ShoppingCart() {
               <hr className="dropdown-divider" />
               <CartPrice text="Items price" price={itemsPrice} />
               <CartPrice text="Shipping price" price="14.99" />
-              <CartPrice text="Coupon discount" price={discountPrice} />
-              <CartPrice
-                text="Total price"
-                price={Math.round((itemsPrice + 14.99) * 100) / 100}
-              />
+              {discount !== 0 ? (
+                <CartPrice text="Coupon discount" price={-discountValue} />
+              ) : (
+                <CartPrice text="Coupon discount" price={0} />
+              )}
+              {discount !== 0 ? (
+                <CartPrice
+                  text="Total price"
+                  price={
+                    Math.round((itemsPrice + 14.99 - discountValue) * 100) / 100
+                  }
+                />
+              ) : (
+                <CartPrice
+                  text="Total price"
+                  price={Math.round((itemsPrice + 14.99) * 100) / 100}
+                />
+              )}
             </div>
             <hr className="dropdown-divider" />
             <div className="cart-footer">

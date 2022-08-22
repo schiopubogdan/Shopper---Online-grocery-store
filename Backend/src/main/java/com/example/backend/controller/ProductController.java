@@ -50,4 +50,10 @@ public class ProductController {
 
         return ResponseEntity.status(HttpStatus.OK).body(productService.findByCategory(category));
     }
+    @GetMapping("/get-category-brands")
+    public ResponseEntity findCategoryBrands(@RequestParam String category) throws ExecutionException,
+            InterruptedException {
+
+        return ResponseEntity.status(HttpStatus.OK).body(productService.findCategoryBrands(category));
+    }
 }

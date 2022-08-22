@@ -82,7 +82,7 @@ export default function Navbar() {
                         </a>
                       </li>
                       <li>
-                        <a className="dropdown-item" href="#">
+                        <a className="dropdown-item" href="/beverage">
                           Beverage
                         </a>
                       </li>
@@ -262,7 +262,7 @@ export default function Navbar() {
                         </a>
                       </li>
                       <li>
-                        <a className="dropdown-item" href="#">
+                        <a className="dropdown-item" href="/beverage">
                           Beverage
                         </a>
                       </li>

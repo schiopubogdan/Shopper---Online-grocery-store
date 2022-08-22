@@ -1,11 +1,15 @@
 package com.example.backend.service.implementation;
 
-import com.example.backend.entity.UserRole;
+import com.example.backend.entity.*;
+import com.example.backend.repository.FavoriteListRepository;
+import com.example.backend.repository.ShoppingListRepository;
+import com.example.backend.repository.StorageListRepository;
 import com.example.backend.repository.UserRoleRepository;
 import com.example.backend.service.UserRoleService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.concurrent.ExecutionException;
 
@@ -14,11 +18,30 @@ public class UserRoleServiceImpl implements UserRoleService {
 
     @Autowired
     private UserRoleRepository userRoleRepository;
+    @Autowired
+    private FavoriteListRepository favoriteListRepository;
+    @Autowired
+    private ShoppingListRepository shoppingListRepository;
+    @Autowired
+    private StorageListRepository storageListRepository;
 
 
     @Override
     public UserRole save(UserRole userRole) throws ExecutionException, InterruptedException {
-        return userRoleRepository.save(userRole);
+        UserRole user =  userRoleRepository.save(userRole);
+        FavoriteList favoriteList = new FavoriteList();
+        favoriteList.setProducts(new ArrayList<>());
+        ShoppingList shoppingList = new ShoppingList();
+        shoppingList.setProducts(new ArrayList<>());
+        StorageList storageList = new StorageList();
+        storageList.setProducts(new ArrayList<>());
+        favoriteList.setUserId(user.getId());
+        shoppingList.setUserId(user.getId());
+        storageList.setUserId(user.getId());
+        favoriteListRepository.save(favoriteList);
+        shoppingListRepository.save(shoppingList);
+        storageListRepository.save(storageList);
+        return user;
     }
 
     @Override

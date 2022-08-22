@@ -5,6 +5,7 @@ import Navbar from "./Navbar";
 import { Rating, Typography } from "@mui/material";
 import { Button } from "react-bootstrap";
 import "./Card.css";
+import Footer from "./Footer";
 
 export default function Product() {
   const location = useLocation();
@@ -193,6 +194,7 @@ export default function Product() {
           </section>
         </div>
       </div>
+      <Footer />
     </div>
   );
 }

@@ -19,7 +19,7 @@ public class ShoppingListServiceImpl implements ShoppingListService {
     @Autowired
     private ProductRepository productRepository;
     @Autowired
-    private CartProductRepository shoppingListProductRepository;
+    private CartProductRepository cartProductRepository;
     @Autowired
     private OrderRepository orderRepository;
     @Autowired
@@ -71,7 +71,7 @@ public class ShoppingListServiceImpl implements ShoppingListService {
             shoppingListProduct.setQuantity(quantity);
             shoppingListProduct.setHasExpirationDate(product.isHasExpirationDate());
             shoppingListProduct.setMeasure(product.getMeasure());
-            shoppingListProductRepository.save(shoppingListProduct);
+            cartProductRepository.save(shoppingListProduct);
             List<CartProduct> shoppingListProducts = new ArrayList<>();
             shoppingListProducts.add(shoppingListProduct);
 
@@ -101,10 +101,10 @@ public class ShoppingListServiceImpl implements ShoppingListService {
             shoppingListProduct.setQuantity(quantity);
             shoppingListProduct.setHasExpirationDate(product.isHasExpirationDate());
             shoppingListProduct.setMeasure(product.getMeasure());
-            shoppingListProductRepository.save(shoppingListProduct);
+            cartProductRepository.save(shoppingListProduct);
             shoppingListProducts.add(shoppingListProduct);
             shoppingList.setProducts(shoppingListProducts);
-            shoppingList.setTotal(shoppingList.getTotal() + shoppingListProduct.getPrice());
+            shoppingList.setTotal(shoppingList.getTotal() + shoppingListProduct.getPrice() * shoppingListProduct.getQuantity());
             shoppingListRepository.updateById(shoppingList);
             return "Shopping list already exists and product added successfully";
         }
@@ -117,12 +117,12 @@ public class ShoppingListServiceImpl implements ShoppingListService {
             return "Shopping list is null";
         } else {
             List<CartProduct> products = shoppingList.getProducts();
-            CartProduct shoppingListProduct = shoppingListProductRepository.findById(productId);
+            CartProduct shoppingListProduct = cartProductRepository.findById(productId);
             shoppingList.setTotal(shoppingList.getTotal()-shoppingListProduct.getPrice());
             products.remove(shoppingListProduct);
             shoppingList.setProducts(products);
             shoppingListRepository.updateById(shoppingList);
-            shoppingListProductRepository.deleteById(productId);
+            cartProductRepository.deleteById(productId);
             return "Product removed from shopping list";
         }
     }
@@ -134,7 +134,7 @@ public class ShoppingListServiceImpl implements ShoppingListService {
             return "Shopping list is null";
         } else {
             List<CartProduct> products = shoppingList.getProducts();
-            CartProduct shoppingListProduct = shoppingListProductRepository.findById(productId);
+            CartProduct shoppingListProduct = cartProductRepository.findById(productId);
             shoppingListProduct.setQuantity(quantity);
             double deltaTotal = 0;
             for(CartProduct p : products) {
@@ -146,7 +146,7 @@ public class ShoppingListServiceImpl implements ShoppingListService {
             shoppingList.setTotal(shoppingList.getTotal() + deltaTotal);
             shoppingList.setProducts(products);
             shoppingListRepository.updateById(shoppingList);
-            shoppingListProductRepository.updateById(shoppingListProduct);
+            cartProductRepository.updateById(shoppingListProduct);
             return "Quantity updated successfully";
 
         }
@@ -160,7 +160,7 @@ public class ShoppingListServiceImpl implements ShoppingListService {
         } else {
             List<CartProduct> shoppingListProducts = shoppingList.getProducts();
             for(CartProduct p : shoppingListProducts) {
-                shoppingListProductRepository.deleteById(p.getId());
+                cartProductRepository.deleteById(p.getId());
             }
             shoppingListProducts.clear();
             shoppingList.setProducts(shoppingListProducts);
@@ -186,20 +186,20 @@ public class ShoppingListServiceImpl implements ShoppingListService {
             UserRole userRole = userRoleRepository.findByUserId(userId);
             userRole.setOrders(userRole.getOrders() + 1);
             userRoleRepository.updateById(userRole);
-            shoppingList.setCouponUsed(false);
-            shoppingList.setCouponCode("");
-            shoppingList.setDiscount(0);
             String orderAddress = address.toString();
             Order order = new Order();
             order.setUserId(userId);
             order.setProducts(shoppingList.getProducts());
             order.setDate(new Date());
             order.setStatus(Status.PAID);
-            order.setTotal(shoppingList.getTotal() + 14.99);
+            order.setTotal(shoppingList.getTotal() - ((shoppingList.getTotal()*shoppingList.getDiscount())/100) + 14.99);
             order.setAddress(orderAddress);
             orderRepository.save(order);
             shoppingList.setProducts(new ArrayList<>());
             shoppingList.setTotal(0);
+            shoppingList.setCouponUsed(false);
+            shoppingList.setCouponCode("");
+            shoppingList.setDiscount(0);
             shoppingListRepository.updateById(shoppingList);
             return "Order has been received";
         }
@@ -210,11 +210,8 @@ public class ShoppingListServiceImpl implements ShoppingListService {
         ShoppingList shoppingList = shoppingListRepository.findUserShoppingList(dto.getUserId());
         shoppingList.setCouponUsed(true);
         shoppingList.setCouponCode(dto.getCode());
-        double total = shoppingList.getTotal();
-        double discount = (total * dto.getProcent())/100;
-        double totalAfterDiscount = total - discount;
-        shoppingList.setDiscount(discount);
-        shoppingList.setTotal(totalAfterDiscount);
+        shoppingList.setDiscount(dto.getProcent());
+
         Coupon coupon = couponRepository.checkCouponCode(dto.getCode());
         String s = couponRepository.deleteById(coupon.getId());
         return shoppingListRepository.updateById(shoppingList);

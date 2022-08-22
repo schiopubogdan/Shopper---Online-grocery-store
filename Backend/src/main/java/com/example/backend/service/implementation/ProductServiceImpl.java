@@ -6,6 +6,7 @@ import com.example.backend.service.ProductService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.concurrent.ExecutionException;
 
@@ -42,6 +43,18 @@ public class ProductServiceImpl implements ProductService {
     @Override
     public List<Product> findByCategory(String category) throws ExecutionException, InterruptedException {
         return productRepository.findByCategory(category);
+    }
+
+    @Override
+    public List<String> findCategoryBrands(String category) throws ExecutionException, InterruptedException {
+        List<Product> products = productRepository.findByCategory(category);
+        List<String> brands = new ArrayList<>();
+        for(Product p : products){
+            if(!brands.contains(p.getBrand())) {
+                brands.add(p.getBrand());
+            }
+        }
+        return brands;
     }
 
 }

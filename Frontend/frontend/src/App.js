@@ -22,6 +22,8 @@ import WorkerDelivered from "./WorkerDelivered";
 import Admin from "./Admin";
 import AdminProductManagement from "./AdminProductManagement";
 import AdminEmployeeManagement from "./AdminEmployeeManagement";
+import PaymentPage from "./PaymentPage";
+import Beverage from "./Categories/Beverage";
 
 const defaultRoute =
   window.location.pathname === "/" ? <Navigate to="/home" /> : undefined;
@@ -50,6 +52,8 @@ function App() {
         <Route exact path="/worker-ready" element={<WorkerReady />} />
         <Route exact path="/worker-delivered" element={<WorkerDelivered />} />
         <Route exact path="/admin" element={<Admin />} />
+        <Route exact path="/payment" element={<PaymentPage />} />
+        <Route exact path="/beverage" element={<Beverage />} />
         <Route
           exact
           path="/admin-prod-man"
