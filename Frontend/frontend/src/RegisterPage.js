@@ -2,6 +2,7 @@ import React from "react";
 import RegisterForm from "./RegisterForm";
 import { Container } from "react-bootstrap";
 import Navbar from "./Navbar";
+import Footer from "./Footer";
 
 function RegisterPage() {
   return (
@@ -19,6 +20,7 @@ function RegisterPage() {
           </Container>
         </div>
       </div>
+      <Footer />
     </div>
   );
 }

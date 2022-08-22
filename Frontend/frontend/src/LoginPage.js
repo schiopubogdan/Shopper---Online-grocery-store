@@ -1,7 +1,8 @@
 import { Container } from "react-bootstrap";
 import LoginForm from "./LoginForm";
 import Navbar from "./Navbar";
-
+import Footer from "./Footer";
+import "./App.css";
 function LoginPage() {
   return (
     <div>
@@ -18,6 +19,7 @@ function LoginPage() {
           </Container>
         </div>
       </div>
+      <Footer />
     </div>
   );
 }
