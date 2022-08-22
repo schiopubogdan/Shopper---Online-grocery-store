@@ -125,7 +125,7 @@ export default function Product() {
       <Navbar />
       <div className="page">
         <div className="page-grid">
-          <section className="container my-5 pt 5">
+          <section className="container">
             <div className="row mt-5">
               <div className="col-lg-5 col-md-12 col-12">
                 <img className="img-fluid w-100" src={product.photoURL} />
