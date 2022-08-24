@@ -190,8 +190,11 @@ export default function Navbar() {
                   <Dropdown.Item href="/coupons" eventKey="3">
                     My coupons
                   </Dropdown.Item>
+                  <Dropdown.Item href="/info" eventKey="4">
+                    My analytics
+                  </Dropdown.Item>
                   <Dropdown.Divider />
-                  <Dropdown.Item eventKey="4" onClick={handleLogout}>
+                  <Dropdown.Item eventKey="5" onClick={handleLogout}>
                     Log out
                   </Dropdown.Item>
                 </DropdownButton>

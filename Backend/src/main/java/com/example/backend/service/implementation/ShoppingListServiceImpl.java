@@ -185,14 +185,16 @@ public class ShoppingListServiceImpl implements ShoppingListService {
         } else {
             UserRole userRole = userRoleRepository.findByUserId(userId);
             userRole.setOrders(userRole.getOrders() + 1);
-            userRoleRepository.updateById(userRole);
             String orderAddress = address.toString();
             Order order = new Order();
             order.setUserId(userId);
             order.setProducts(shoppingList.getProducts());
             order.setDate(new Date());
             order.setStatus(Status.PAID);
-            order.setTotal(shoppingList.getTotal() - ((shoppingList.getTotal()*shoppingList.getDiscount())/100) + 14.99);
+            double couponDiscount = (shoppingList.getTotal()*shoppingList.getDiscount())/100;
+            userRole.setCouponsTotalValue(userRole.getCouponsTotalValue() + couponDiscount);
+            userRoleRepository.updateById(userRole);
+            order.setTotal(shoppingList.getTotal() - couponDiscount + 14.99);
             order.setAddress(orderAddress);
             orderRepository.save(order);
             shoppingList.setProducts(new ArrayList<>());
@@ -208,6 +210,9 @@ public class ShoppingListServiceImpl implements ShoppingListService {
     @Override
     public ShoppingList applyCoupon(CouponDTO dto) throws ExecutionException, InterruptedException {
         ShoppingList shoppingList = shoppingListRepository.findUserShoppingList(dto.getUserId());
+        UserRole userRole = userRoleRepository.findByUserId(dto.getUserId());
+        userRole.setCouponsUsed(userRole.getCouponsUsed() + 1);
+        userRoleRepository.updateById(userRole);
         shoppingList.setCouponUsed(true);
         shoppingList.setCouponCode(dto.getCode());
         shoppingList.setDiscount(dto.getProcent());

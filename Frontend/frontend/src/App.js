@@ -15,6 +15,7 @@ import ShoppingCart from "./ShoppingCart";
 import ClientProfile from "./ClientProfile";
 import ClientHistory from "./ClientHistory";
 import ClientCoupons from "./ClientCoupons";
+import ClientAnalytics from "./ClientAnalytics";
 import WorkerPaid from "./WorkerPaid";
 import WorkerInprogress from "./WorkerInprogress";
 import WorkerReady from "./WorkerReady";
@@ -47,6 +48,7 @@ function App() {
         <Route exact path="/profile" element={<ClientProfile />} />
         <Route exact path="/history" element={<ClientHistory />} />
         <Route exact path="/coupons" element={<ClientCoupons />} />
+        <Route exact path="/info" element={<ClientAnalytics />} />
         <Route exact path="/worker-paid" element={<WorkerPaid />} />
         <Route exact path="/worker-inprogress" element={<WorkerInprogress />} />
         <Route exact path="/worker-ready" element={<WorkerReady />} />

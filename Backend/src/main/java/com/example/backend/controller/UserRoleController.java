@@ -49,4 +49,9 @@ public class UserRoleController {
             InterruptedException {
         return ResponseEntity.status(HttpStatus.OK).body(userRoleService.deleteById(id));
     }
+    @GetMapping("/info")
+    public ResponseEntity getClientInfo(@RequestParam String id) throws ExecutionException,
+            InterruptedException {
+        return ResponseEntity.status(HttpStatus.OK).body(userRoleService.getClientInfo(id));
+    }
 }

@@ -17,6 +17,8 @@ public class UserRoleRepository {
 
     public UserRole save(UserRole dto) throws ExecutionException, InterruptedException {
         Firestore dbFirestore = FirestoreClient.getFirestore();
+        dto.setCouponsUsed(0);
+        dto.setCouponsTotalValue(0);
         dbFirestore.collection(COLLECTION_NAME).document(dto.getId()).set(dto);
         return dto;
     }

@@ -12,5 +12,7 @@ public class UserRole {
     private String email;
     private String role;
     private int orders;
+    private int couponsUsed;
+    private double couponsTotalValue;
 
 }

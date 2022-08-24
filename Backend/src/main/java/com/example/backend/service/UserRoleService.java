@@ -1,5 +1,6 @@
 package com.example.backend.service;
 
+import com.example.backend.dto.ClientInfoDTO;
 import com.example.backend.entity.UserRole;
 import org.springframework.stereotype.Component;
 
@@ -15,4 +16,5 @@ public interface UserRoleService {
     List<UserRole> findAll() throws ExecutionException, InterruptedException;
     List<UserRole> getEmployees() throws ExecutionException, InterruptedException;
     UserRole updateOrdersStreak(UserRole dto) throws ExecutionException, InterruptedException;
+    ClientInfoDTO getClientInfo(String id) throws ExecutionException, InterruptedException;
 }

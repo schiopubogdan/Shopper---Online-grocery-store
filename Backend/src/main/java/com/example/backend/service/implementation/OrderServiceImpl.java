@@ -78,7 +78,7 @@ public class OrderServiceImpl implements OrderService {
                 }
             }
             storageList.setProducts(products1);
-            storageListRepository.save(storageList);
+            storageListRepository.updateById(storageList);
             order.setStatus(Status.DELIVERED);
             order.setDeliveryDate(new Date());
             order.setDriverId(driverId);

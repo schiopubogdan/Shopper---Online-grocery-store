@@ -74,8 +74,8 @@ export default function PaymentForm({ price }) {
     <>
       {!success ? (
         <form onSubmit={handleSubmit}>
-          <fieldset className="FormGroupStripe">
-            <div className="FormRowStripe">
+          <fieldset className="FormGroup">
+            <div className="FormRow">
               <CardElement options={CARD_OPTIONS} />
             </div>
           </fieldset>
