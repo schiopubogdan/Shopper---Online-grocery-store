@@ -1,7 +1,6 @@
 package com.example.backend.controller;
 
-import com.example.backend.entity.CartProduct;
-import com.example.backend.entity.StorageProduct;
+import com.example.backend.models.StorageProduct;
 import com.example.backend.service.StorageProductService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;

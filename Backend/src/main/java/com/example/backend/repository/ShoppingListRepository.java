@@ -1,7 +1,6 @@
 package com.example.backend.repository;
 
-import com.example.backend.entity.FavoriteList;
-import com.example.backend.entity.ShoppingList;
+import com.example.backend.models.ShoppingList;
 import com.google.api.core.ApiFuture;
 import com.google.cloud.firestore.*;
 import com.google.firebase.cloud.FirestoreClient;

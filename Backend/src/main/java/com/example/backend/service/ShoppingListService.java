@@ -1,8 +1,7 @@
 package com.example.backend.service;
 
 import com.example.backend.dto.CouponDTO;
-import com.example.backend.entity.ShoppingList;
-import com.example.backend.entity.CartProduct;
+import com.example.backend.models.ShoppingList;
 import org.springframework.stereotype.Component;
 
 import java.util.List;

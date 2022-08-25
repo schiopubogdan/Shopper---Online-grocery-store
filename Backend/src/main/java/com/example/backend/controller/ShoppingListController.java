@@ -3,7 +3,7 @@ package com.example.backend.controller;
 import com.example.backend.dto.CartProductDTO;
 import com.example.backend.dto.CouponDTO;
 import com.example.backend.dto.ProductDTO;
-import com.example.backend.entity.ShoppingList;
+import com.example.backend.models.ShoppingList;
 import com.example.backend.service.ShoppingListService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;

@@ -1,4 +1,4 @@
-package com.example.backend.entity;
+package com.example.backend.models;
 
 import lombok.Data;
 import lombok.Getter;
@@ -9,9 +9,8 @@ import java.util.List;
 @Data
 @Setter
 @Getter
-public class FavoriteList {
+public class StorageList {
     private String id;
     private String userId;
-    private List<Product> products;
-
+    private List<StorageProduct> products;
 }

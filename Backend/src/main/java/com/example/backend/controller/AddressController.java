@@ -1,6 +1,6 @@
 package com.example.backend.controller;
 
-import com.example.backend.entity.Address;
+import com.example.backend.models.Address;
 import com.example.backend.service.AddressService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;

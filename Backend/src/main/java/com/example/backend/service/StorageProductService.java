@@ -1,7 +1,6 @@
 package com.example.backend.service;
 
-import com.example.backend.entity.StorageProduct;
-import com.example.backend.repository.StorageProductRepository;
+import com.example.backend.models.StorageProduct;
 import org.springframework.stereotype.Component;
 
 import java.util.List;

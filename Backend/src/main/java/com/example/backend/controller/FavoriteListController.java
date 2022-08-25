@@ -1,7 +1,7 @@
 package com.example.backend.controller;
 
 import com.example.backend.dto.ProductDTO;
-import com.example.backend.entity.FavoriteList;
+import com.example.backend.models.FavoriteList;
 import com.example.backend.service.FavoriteListService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;

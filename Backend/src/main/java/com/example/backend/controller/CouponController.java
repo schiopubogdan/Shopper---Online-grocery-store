@@ -1,7 +1,7 @@
 package com.example.backend.controller;
 
 import com.example.backend.dto.CouponDTO;
-import com.example.backend.entity.Coupon;
+import com.example.backend.models.Coupon;
 import com.example.backend.service.CouponService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;

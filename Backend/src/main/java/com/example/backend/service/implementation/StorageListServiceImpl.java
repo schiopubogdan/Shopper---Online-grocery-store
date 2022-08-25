@@ -1,8 +1,8 @@
 package com.example.backend.service.implementation;
 
-import com.example.backend.entity.CartProduct;
-import com.example.backend.entity.StorageList;
-import com.example.backend.entity.StorageProduct;
+import com.example.backend.models.CartProduct;
+import com.example.backend.models.StorageList;
+import com.example.backend.models.StorageProduct;
 import com.example.backend.repository.CartProductRepository;
 import com.example.backend.repository.StorageListRepository;
 import com.example.backend.repository.StorageProductRepository;

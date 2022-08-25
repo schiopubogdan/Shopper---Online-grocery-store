@@ -1,7 +1,7 @@
 package com.example.backend.service.implementation;
 
 import com.example.backend.dto.CouponDTO;
-import com.example.backend.entity.*;
+import com.example.backend.models.*;
 import com.example.backend.repository.*;
 import com.example.backend.service.ShoppingListService;
 import org.springframework.beans.factory.annotation.Autowired;

@@ -1,7 +1,7 @@
 package com.example.backend.repository;
 
-import com.example.backend.entity.Order;
-import com.example.backend.entity.Status;
+import com.example.backend.models.Order;
+import com.example.backend.models.Status;
 import com.google.api.core.ApiFuture;
 import com.google.cloud.firestore.*;
 import com.google.firebase.cloud.FirestoreClient;

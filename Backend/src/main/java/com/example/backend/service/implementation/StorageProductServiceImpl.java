@@ -1,6 +1,6 @@
 package com.example.backend.service.implementation;
 
-import com.example.backend.entity.StorageProduct;
+import com.example.backend.models.StorageProduct;
 import com.example.backend.repository.StorageProductRepository;
 import com.example.backend.service.StorageProductService;
 import org.springframework.beans.factory.annotation.Autowired;

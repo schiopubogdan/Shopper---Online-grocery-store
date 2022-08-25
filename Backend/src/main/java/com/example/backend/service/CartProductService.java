@@ -1,6 +1,6 @@
 package com.example.backend.service;
 
-import com.example.backend.entity.CartProduct;
+import com.example.backend.models.CartProduct;
 import org.springframework.stereotype.Component;
 
 import java.util.List;

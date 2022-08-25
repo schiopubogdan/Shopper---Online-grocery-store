@@ -1,7 +1,7 @@
 package com.example.backend.service;
 
-import com.example.backend.entity.FavoriteList;
-import com.example.backend.entity.Product;
+import com.example.backend.models.FavoriteList;
+import com.example.backend.models.Product;
 import org.springframework.stereotype.Component;
 
 import java.util.List;

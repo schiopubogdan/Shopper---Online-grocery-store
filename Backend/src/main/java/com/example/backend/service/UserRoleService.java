@@ -1,7 +1,7 @@
 package com.example.backend.service;
 
 import com.example.backend.dto.ClientInfoDTO;
-import com.example.backend.entity.UserRole;
+import com.example.backend.models.UserRole;
 import org.springframework.stereotype.Component;
 
 import java.util.List;

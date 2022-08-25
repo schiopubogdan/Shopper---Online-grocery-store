@@ -1,7 +1,7 @@
 package com.example.backend.service.implementation;
 
 import com.example.backend.dto.ClientInfoDTO;
-import com.example.backend.entity.*;
+import com.example.backend.models.*;
 import com.example.backend.repository.*;
 import com.example.backend.service.UserRoleService;
 import org.springframework.beans.factory.annotation.Autowired;

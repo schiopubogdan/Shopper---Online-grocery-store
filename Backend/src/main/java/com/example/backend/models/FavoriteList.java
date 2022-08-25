@@ -1,15 +1,17 @@
-package com.example.backend.entity;
+package com.example.backend.models;
 
 import lombok.Data;
 import lombok.Getter;
 import lombok.Setter;
 
+import java.util.List;
+
 @Data
 @Setter
 @Getter
-public class Coupon {
+public class FavoriteList {
     private String id;
     private String userId;
-    private double procent;
-    private String code;
+    private List<Product> products;
+
 }

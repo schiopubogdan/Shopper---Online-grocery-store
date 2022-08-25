@@ -1,7 +1,6 @@
 package com.example.backend.service;
 
-import com.example.backend.entity.Address;
-import com.example.backend.entity.Product;
+import com.example.backend.models.Address;
 import org.springframework.stereotype.Component;
 
 import java.util.List;

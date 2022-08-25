@@ -1,6 +1,6 @@
 package com.example.backend.service.implementation;
 
-import com.example.backend.entity.CartProduct;
+import com.example.backend.models.CartProduct;
 import com.example.backend.repository.CartProductRepository;
 import com.example.backend.service.CartProductService;
 import org.springframework.beans.factory.annotation.Autowired;

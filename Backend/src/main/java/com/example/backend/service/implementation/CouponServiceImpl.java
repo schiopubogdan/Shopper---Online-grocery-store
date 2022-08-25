@@ -1,8 +1,8 @@
 package com.example.backend.service.implementation;
 
 import com.example.backend.dto.CouponDTO;
-import com.example.backend.entity.Coupon;
-import com.example.backend.entity.UserRole;
+import com.example.backend.models.Coupon;
+import com.example.backend.models.UserRole;
 import com.example.backend.repository.CouponRepository;
 import com.example.backend.repository.UserRoleRepository;
 import com.example.backend.service.CouponService;

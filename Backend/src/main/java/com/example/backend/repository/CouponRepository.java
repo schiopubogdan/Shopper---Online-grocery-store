@@ -1,7 +1,6 @@
 package com.example.backend.repository;
 
-import com.example.backend.entity.Address;
-import com.example.backend.entity.Coupon;
+import com.example.backend.models.Coupon;
 import com.google.api.core.ApiFuture;
 import com.google.cloud.firestore.*;
 import com.google.firebase.cloud.FirestoreClient;

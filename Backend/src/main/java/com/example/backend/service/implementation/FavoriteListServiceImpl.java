@@ -1,7 +1,7 @@
 package com.example.backend.service.implementation;
 
-import com.example.backend.entity.FavoriteList;
-import com.example.backend.entity.Product;
+import com.example.backend.models.FavoriteList;
+import com.example.backend.models.Product;
 import com.example.backend.repository.FavoriteListRepository;
 import com.example.backend.repository.ProductRepository;
 import com.example.backend.service.FavoriteListService;
