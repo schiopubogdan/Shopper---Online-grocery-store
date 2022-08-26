@@ -48,17 +48,20 @@ public class FavoriteListController {
     @PostMapping("/add")
     public ResponseEntity addProduct(@RequestBody ProductDTO dto) throws ExecutionException,
             InterruptedException {
-        return ResponseEntity.status(HttpStatus.OK).body(favoriteListService.addProduct(dto.getProductId(),dto.getUserId()));
+        return ResponseEntity.status(HttpStatus.OK).body(favoriteListService.addProduct(dto.getProductId(),
+                dto.getUserId()));
     }
     @PostMapping("/remove")
     public ResponseEntity removeProduct(@RequestBody ProductDTO dto) throws ExecutionException,
             InterruptedException {
-        return ResponseEntity.status(HttpStatus.OK).body(favoriteListService.removeProduct(dto.getProductId(),dto.getUserId()));
+        return ResponseEntity.status(HttpStatus.OK).body(favoriteListService.removeProduct(dto.getProductId(),
+                dto.getUserId()));
     }
     @PostMapping("/check")
     public ResponseEntity checkProduct(@RequestBody ProductDTO dto) throws ExecutionException,
             InterruptedException {
-        return ResponseEntity.status(HttpStatus.OK).body(favoriteListService.checkProduct(dto.getProductId(),dto.getUserId()));
+        return ResponseEntity.status(HttpStatus.OK).body(favoriteListService.checkProduct(dto.getProductId(),
+                dto.getUserId()));
     }
 
 

@@ -18,7 +18,7 @@ export default function WorkerNavbar() {
       <nav className="navbar navbar-expand-lg bg-light">
         <div className="container-fluid">
           <a className="navbar-brand fw-bold fs-4" href="#">
-            NUME SITE
+            SHOPPER
           </a>
           <button
             className="navbar-toggler"

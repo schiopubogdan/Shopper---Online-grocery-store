@@ -8,7 +8,6 @@ import {
 import React, { useContext, useState, useEffect } from "react";
 import { auth } from "./firebase-config";
 import { useNavigate } from "react-router-dom";
-import { red } from "@mui/material/colors";
 const AuthContex = React.createContext();
 
 export function useAuth() {

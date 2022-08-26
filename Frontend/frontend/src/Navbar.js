@@ -24,7 +24,7 @@ export default function Navbar() {
           <nav className="navbar navbar-expand-lg  navbar">
             <div className="container-fluid">
               <a className="navbar-brand fw-bold fs-4" href="/home">
-                NUME SITE
+                SHOPPER
               </a>
               <button
                 className="navbar-toggler"
@@ -207,7 +207,7 @@ export default function Navbar() {
           <nav className="navbar navbar-expand-lg navbar">
             <div className="container-fluid">
               <a className="navbar-brand fw-bold fs-4" href="#">
-                NUME SITE
+                SHOPPER
               </a>
               <button
                 className="navbar-toggler"
