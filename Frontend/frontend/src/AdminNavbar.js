@@ -52,7 +52,7 @@ export default function AdminNavbar() {
                 </a>
               </li>
               <li className="nav-item">
-                <a className="nav-link" href="/worker-ready">
+                <a className="nav-link" href="/admin-analytics">
                   ANALYTICS
                 </a>
               </li>

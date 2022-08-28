@@ -62,4 +62,9 @@ public class OrderController {
             InterruptedException {
         return ResponseEntity.status(HttpStatus.OK).body(orderService.promote(dto.getOrderId(),dto.getWorkerId(),dto.getDriverId()));
     }
+    @GetMapping("/analytics")
+    public ResponseEntity getAnalytics() throws ExecutionException,
+            InterruptedException {
+        return ResponseEntity.status(HttpStatus.OK).body(orderService.getAnalytics());
+    }
 }

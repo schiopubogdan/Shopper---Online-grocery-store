@@ -1,5 +1,6 @@
 package com.example.backend.service.implementation;
 
+import com.example.backend.dto.AdminAnalyticsDTO;
 import com.example.backend.models.*;
 import com.example.backend.repository.OrderRepository;
 import com.example.backend.repository.StorageListRepository;
@@ -8,6 +9,8 @@ import com.example.backend.service.OrderService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.time.LocalDate;
+import java.time.ZoneId;
 import java.util.Date;
 import java.util.List;
 import java.util.concurrent.ExecutionException;
@@ -96,5 +99,59 @@ public class OrderServiceImpl implements OrderService {
     @Override
     public List<Order> findByUserId(String id) throws ExecutionException, InterruptedException {
         return orderRepository.findByUserId(id);
+    }
+
+    @Override
+    public AdminAnalyticsDTO getAnalytics() throws ExecutionException, InterruptedException {
+        List<Order> orders = orderRepository.findAll();
+        int[] ordersAnalytics = new int[7];
+        double[] incomesAnalytics = new double[7];
+        Date currentDate = new Date();
+        LocalDate date =  LocalDate.ofInstant(
+                currentDate.toInstant(), ZoneId.systemDefault());
+        LocalDate earlierDate1 = date.minusDays(1);
+        LocalDate earlierDate2 = date.minusDays(2);
+        LocalDate earlierDate3 = date.minusDays(3);
+        LocalDate earlierDate4 = date.minusDays(4);
+        LocalDate earlierDate5 = date.minusDays(5);
+        LocalDate earlierDate6 = date.minusDays(6);
+        LocalDate earlierDate7 = date.minusDays(7);
+
+
+        for(Order o : orders) {
+            LocalDate orderDate = LocalDate.ofInstant(o.getDate().toInstant(), ZoneId.systemDefault());
+            if(orderDate.getDayOfMonth() == earlierDate1.getDayOfMonth()){
+                ordersAnalytics[6] ++;
+                incomesAnalytics[6] += o.getTotal();
+            }
+            if(orderDate.getDayOfMonth() == earlierDate2.getDayOfMonth()){
+                ordersAnalytics[5] ++;
+                incomesAnalytics[5] += o.getTotal();
+            }
+            if(orderDate.getDayOfMonth() == earlierDate3.getDayOfMonth()){
+                ordersAnalytics[4] ++;
+                incomesAnalytics[4] += o.getTotal();
+            }
+            if(orderDate.getDayOfMonth() == earlierDate4.getDayOfMonth()){
+                ordersAnalytics[3] ++;
+                incomesAnalytics[3] += o.getTotal();
+            }
+            if(orderDate.getDayOfMonth() == earlierDate5.getDayOfMonth()){
+                ordersAnalytics[2] ++;
+                incomesAnalytics[2] += o.getTotal();
+            }
+            if(orderDate.getDayOfMonth() == earlierDate6.getDayOfMonth()){
+                ordersAnalytics[1] ++;
+                incomesAnalytics[1] += o.getTotal();
+            }
+            if(orderDate.getDayOfMonth() == earlierDate7.getDayOfMonth()){
+                ordersAnalytics[0] ++;
+                incomesAnalytics[0] += o.getTotal();
+            }
+        }
+        AdminAnalyticsDTO dto = new AdminAnalyticsDTO();
+        dto.setOrders(ordersAnalytics);
+        dto.setIncomes(incomesAnalytics);
+        return dto;
     }
 }

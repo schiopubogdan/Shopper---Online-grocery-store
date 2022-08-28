@@ -1,5 +1,6 @@
 package com.example.backend.service;
 
+import com.example.backend.dto.AdminAnalyticsDTO;
 import com.example.backend.models.Order;
 import org.springframework.stereotype.Component;
 
@@ -16,4 +17,5 @@ public interface OrderService {
     String promote(String id, String workerId, String driverId) throws ExecutionException, InterruptedException;
     List<Order> findByStatus(String status) throws ExecutionException, InterruptedException;
     List<Order> findByUserId(String id) throws ExecutionException, InterruptedException;
+    AdminAnalyticsDTO getAnalytics() throws ExecutionException, InterruptedException;
 }

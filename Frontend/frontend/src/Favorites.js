@@ -32,6 +32,13 @@ export default function Favorites() {
       <Navbar />
       <div className="page">
         <div className="card-grid">
+          {products.length == 0 && (
+            <div className="emtpy-favorite-list">
+              <div className="empty-favorite-list-inner">
+                <span>No products here yet.</span>
+              </div>
+            </div>
+          )}
           {products.map((product, key) => (
             <div className="product-container">
               <ProductCardFavorite product={product} />

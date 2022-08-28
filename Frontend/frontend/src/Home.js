@@ -7,7 +7,13 @@ import quality from "./Images/high-quality.png";
 import promo from "./Images/promo.png";
 import delivery from "./Images/fast-delivery.png";
 import Footer from "./Footer";
-
+import "react-responsive-carousel/lib/styles/carousel.min.css";
+import { Carousel } from "react-responsive-carousel";
+import carousel1 from "./Images/carousel-1.png";
+import carousel2 from "./Images/carousel-2.png";
+import carousel3 from "./Images/carousel-3.jpg";
+import carousel4 from "./Images/carousel-4.png";
+import carousel5 from "./Images/carousel-5.png";
 function Home() {
   return (
     <div>
@@ -17,7 +23,7 @@ function Home() {
           <div className="home-presentation-div">
             <h1>Welcome!</h1>
             <p>
-              NUME_SITE is the new online shop that you're gonna love. Here you
+              SHOPPER is the new online shop that you're gonna love. Here you
               can find all the top brands and their best products and a lot more
               perks. <a href="/register">Create an account</a> and enjoy
               shopping!
@@ -32,62 +38,17 @@ function Home() {
             </p>
           </div>
           <div className="home-carousel-div">
-            <div
-              id="carouselExampleIndicators"
-              className="carousel slide"
-              data-ride="carousel"
-            >
-              <ol className="carousel-indicators">
-                <li
-                  data-target="#carouselExampleIndicators"
-                  data-slide-to="0"
-                  className="active"
-                ></li>
-                <li
-                  data-target="#carouselExampleIndicators"
-                  data-slide-to="1"
-                ></li>
-                <li
-                  data-target="#carouselExampleIndicators"
-                  data-slide-to="2"
-                ></li>
-              </ol>
-              <div className="carousel-inner">
-                <div className="carousel-item active">
-                  <img className="d-block w-100" src="..." alt="First slide" />
-                </div>
-                <div className="carousel-item">
-                  <img className="d-block w-100" src="..." alt="Second slide" />
-                </div>
-                <div className="carousel-item">
-                  <img className="d-block w-100" src="..." alt="Third slide" />
-                </div>
+            <Carousel showThumbs={false} autoPlay={true} infiniteLoop={true}>
+              <div>
+                <img src={carousel4} height="317px" width="200px" />
               </div>
-              <a
-                className="carousel-control-prev"
-                href="#carouselExampleIndicators"
-                role="button"
-                data-slide="prev"
-              >
-                <span
-                  className="carousel-control-prev-icon"
-                  aria-hidden="true"
-                ></span>
-                <span className="sr-only">Previous</span>
-              </a>
-              <a
-                className="carousel-control-next"
-                href="#carouselExampleIndicators"
-                role="button"
-                data-slide="next"
-              >
-                <span
-                  className="carousel-control-next-icon"
-                  aria-hidden="true"
-                ></span>
-                <span className="sr-only">Next</span>
-              </a>
-            </div>
+              <div>
+                <img src={carousel2} height="317px" width="200px" />
+              </div>
+              <div>
+                <img src={carousel5} height="317px" width="200px" />
+              </div>
+            </Carousel>
           </div>
           <div className="home-separation-div">
             <p className="myclass">

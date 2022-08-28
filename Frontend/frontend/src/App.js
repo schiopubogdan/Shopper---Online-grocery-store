@@ -21,6 +21,7 @@ import WorkerInprogress from "./WorkerInprogress";
 import WorkerReady from "./WorkerReady";
 import WorkerDelivered from "./WorkerDelivered";
 import Admin from "./Admin";
+import AdminAnalytics from "./AdminAnalytics";
 import AdminProductManagement from "./AdminProductManagement";
 import AdminEmployeeManagement from "./AdminEmployeeManagement";
 import PaymentPage from "./PaymentPage";
@@ -66,7 +67,9 @@ function App() {
           path="/admin-empl-man"
           element={<AdminEmployeeManagement />}
         />
+        <Route exact path="/admin-analytics" element={<AdminAnalytics />} />
       </Routes>
+
       {defaultRoute}
     </AuthProvider>
   );
