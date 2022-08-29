@@ -16,6 +16,7 @@ export default function AdminAnalytics() {
   const [info, setInfo] = useState(null);
   const [ordersData, setOrdersData] = useState(null);
   const [incomeData, setIncomeData] = useState(null);
+  const [usersData, setUsersData] = useState(null);
   const monthNames = [
     "Jan",
     "Feb",
@@ -48,6 +49,18 @@ export default function AdminAnalytics() {
         <div className="custom-tooltip">
           <p className="label">{`${label} :`}</p>
           <p className="label">{`${payload[0].value}`} LEI</p>
+        </div>
+      );
+    }
+
+    return null;
+  }
+  function CustomTooltipUsers({ payload, label, active }) {
+    if (active) {
+      return (
+        <div className="custom-tooltip">
+          <p className="label">{`${label} :`}</p>
+          <p className="label">{`${payload[0].value}`} accounts</p>
         </div>
       );
     }
@@ -221,6 +234,85 @@ export default function AdminAnalytics() {
             uv: Math.round(resp.data.incomes[6] * 100) / 100,
           },
         ]);
+        setUsersData([
+          {
+            name:
+              new Date(new Date().getTime() - 168 * 60 * 60 * 1000)
+                .getDate()
+                .toString() +
+              " " +
+              monthNames[
+                new Date(new Date().getTime() - 168 * 60 * 60 * 1000).getMonth()
+              ],
+            uv: resp.data.users[0],
+          },
+          {
+            name:
+              new Date(new Date().getTime() - 144 * 60 * 60 * 1000)
+                .getDate()
+                .toString() +
+              " " +
+              monthNames[
+                new Date(new Date().getTime() - 144 * 60 * 60 * 1000).getMonth()
+              ],
+            uv: resp.data.users[1],
+          },
+          {
+            name:
+              new Date(new Date().getTime() - 120 * 60 * 60 * 1000)
+                .getDate()
+                .toString() +
+              " " +
+              monthNames[
+                new Date(new Date().getTime() - 120 * 60 * 60 * 1000).getMonth()
+              ],
+            uv: resp.data.users[2],
+          },
+          {
+            name:
+              new Date(new Date().getTime() - 96 * 60 * 60 * 1000)
+                .getDate()
+                .toString() +
+              " " +
+              monthNames[
+                new Date(new Date().getTime() - 96 * 60 * 60 * 1000).getMonth()
+              ],
+            uv: resp.data.users[3],
+          },
+          {
+            name:
+              new Date(new Date().getTime() - 72 * 60 * 60 * 1000)
+                .getDate()
+                .toString() +
+              " " +
+              monthNames[
+                new Date(new Date().getTime() - 72 * 60 * 60 * 1000).getMonth()
+              ],
+            uv: resp.data.users[4],
+          },
+          {
+            name:
+              new Date(new Date().getTime() - 48 * 60 * 60 * 1000)
+                .getDate()
+                .toString() +
+              " " +
+              monthNames[
+                new Date(new Date().getTime() - 48 * 60 * 60 * 1000).getMonth()
+              ],
+            uv: resp.data.users[5],
+          },
+          {
+            name:
+              new Date(new Date().getTime() - 24 * 60 * 60 * 1000)
+                .getDate()
+                .toString() +
+              " " +
+              monthNames[
+                new Date(new Date().getTime() - 24 * 60 * 60 * 1000).getMonth()
+              ],
+            uv: resp.data.users[6],
+          },
+        ]);
       } catch (err) {
         console.log(err);
       }
@@ -325,7 +417,20 @@ export default function AdminAnalytics() {
             aria-labelledby="panelsStayOpen-headingThree"
           >
             <div class="accordion-body">
-              <strong>----TO BE IMPLEMENTED----</strong>
+              <div className="admin-analytics-chart-div">
+                <BarChart
+                  width={1450}
+                  height={400}
+                  data={usersData}
+                  margin={{ top: 5, right: 20, bottom: 5, left: 0 }}
+                >
+                  <CartesianGrid stroke="#ccc" strokeDasharray="5 5" />
+                  <XAxis dataKey="name" />
+                  <YAxis />
+                  <Tooltip content={<CustomTooltipUsers />} />
+                  <Bar dataKey="uv" barSize={30} fill="#8884d8" />
+                </BarChart>
+              </div>
             </div>
           </div>
         </div>

@@ -5,6 +5,7 @@ import com.example.backend.models.*;
 import com.example.backend.repository.OrderRepository;
 import com.example.backend.repository.StorageListRepository;
 import com.example.backend.repository.StorageProductRepository;
+import com.example.backend.repository.UserRoleRepository;
 import com.example.backend.service.OrderService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -24,6 +25,8 @@ public class OrderServiceImpl implements OrderService {
     private StorageProductRepository storageProductRepository;
     @Autowired
     private StorageListRepository storageListRepository;
+    @Autowired
+    private UserRoleRepository userRoleRepository;
 
     @Override
     public Order save(Order order) throws ExecutionException, InterruptedException {
@@ -104,8 +107,10 @@ public class OrderServiceImpl implements OrderService {
     @Override
     public AdminAnalyticsDTO getAnalytics() throws ExecutionException, InterruptedException {
         List<Order> orders = orderRepository.findAll();
+        List<UserRole> users = userRoleRepository.findAll();
         int[] ordersAnalytics = new int[7];
         double[] incomesAnalytics = new double[7];
+        int[] usersAnalytics = new int[7];
         Date currentDate = new Date();
         LocalDate date =  LocalDate.ofInstant(
                 currentDate.toInstant(), ZoneId.systemDefault());
@@ -149,9 +154,36 @@ public class OrderServiceImpl implements OrderService {
                 incomesAnalytics[0] += o.getTotal();
             }
         }
+        for(UserRole u : users) {
+            if(u.getRole().equals("client") && u.getCreatedAt() != null) { LocalDate userDate = LocalDate.ofInstant(u.getCreatedAt().toInstant(), ZoneId.systemDefault());
+                if(userDate.getDayOfMonth() == earlierDate1.getDayOfMonth()){
+                    usersAnalytics[6] ++;
+                }
+                if(userDate.getDayOfMonth() == earlierDate2.getDayOfMonth()){
+                    usersAnalytics[5] ++;
+                }
+                if(userDate.getDayOfMonth() == earlierDate3.getDayOfMonth()){
+                    usersAnalytics[4] ++;
+
+                }
+                if(userDate.getDayOfMonth() == earlierDate4.getDayOfMonth()){
+                    usersAnalytics[3] ++;
+                }
+                if(userDate.getDayOfMonth() == earlierDate5.getDayOfMonth()){
+                    usersAnalytics[2] ++;
+                }
+                if(userDate.getDayOfMonth() == earlierDate6.getDayOfMonth()){
+                    usersAnalytics[1] ++;
+                }
+                if(userDate.getDayOfMonth() == earlierDate7.getDayOfMonth()){
+                    usersAnalytics[0] ++;
+                }}
+
+        }
         AdminAnalyticsDTO dto = new AdminAnalyticsDTO();
         dto.setOrders(ordersAnalytics);
         dto.setIncomes(incomesAnalytics);
+        dto.setUsers(usersAnalytics);
         return dto;
     }
 }

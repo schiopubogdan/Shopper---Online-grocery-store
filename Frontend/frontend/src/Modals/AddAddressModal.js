@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import "./AddressModal.css";
 import axios from "axios";
+import { toast } from "react-toastify";
 
 const MODAL_STYLES = {
   position: "fixed",
@@ -59,6 +60,9 @@ export default function AddAddressModal({ open, onClose }) {
             console.log("X");
           } else {
             console.log("Address created");
+            toast.success("Address was successfully added.", {
+              position: toast.POSITION.TOP_CENTER,
+            });
           }
         })
         .catch((error) => {

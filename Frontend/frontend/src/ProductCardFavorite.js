@@ -3,6 +3,7 @@ import { Link } from "react-router-dom";
 import { Button } from "react-bootstrap";
 import { Rating, Typography } from "@mui/material";
 import axios from "axios";
+import { toast } from "react-toastify";
 
 export default function ProductCardFavorite(props) {
   function removeFromFavorite() {
@@ -18,7 +19,9 @@ export default function ProductCardFavorite(props) {
         if (res.data === "") {
           alert("X");
         } else {
-          alert("Product removed");
+          toast.success("Item was successfully removed.", {
+            position: toast.POSITION.TOP_CENTER,
+          });
         }
       })
       .catch((error) => {

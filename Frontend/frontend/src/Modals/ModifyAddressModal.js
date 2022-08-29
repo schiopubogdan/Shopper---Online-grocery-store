@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import "./AddressModal.css";
 import axios from "axios";
+import { toast } from "react-toastify";
 
 const MODAL_STYLES = {
   position: "fixed",
@@ -70,13 +71,16 @@ export default function ModifyAddressModal({
             console.log("X");
           } else {
             console.log("Address updated");
+            toast.success("Address was successfully modified.", {
+              position: toast.POSITION.TOP_CENTER,
+            });
           }
         })
         .catch((error) => {
           console.log(error);
         });
     } else {
-      setError("New password is identical with the current one");
+      setError("New address is identical with the current one");
     }
   }
 

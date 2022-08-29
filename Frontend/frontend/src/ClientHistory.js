@@ -32,8 +32,17 @@ export default function ClientHistory() {
             ongoingO.push(resp.data[i]);
           }
         }
-        setDeliveredOrders(deliveredO);
-        setOngoingOrders(ongoingO);
+        const unsortedDelivered = deliveredO;
+        unsortedDelivered.sort(function (a, b) {
+          return new Date(b.date) - new Date(a.date);
+        });
+        const unsortedOngoing = ongoingO;
+        unsortedOngoing.sort(function (a, b) {
+          return new Date(b.date) - new Date(a.date);
+        });
+
+        setDeliveredOrders(unsortedDelivered);
+        setOngoingOrders(unsortedOngoing);
         console.log(resp.data);
       } catch (err) {
         console.log(err);

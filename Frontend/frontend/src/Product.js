@@ -6,6 +6,7 @@ import { Rating, Typography } from "@mui/material";
 import { Button } from "react-bootstrap";
 import "./Card.css";
 import Footer from "./Footer";
+import { toast } from "react-toastify";
 
 export default function Product() {
   const location = useLocation();
@@ -66,9 +67,13 @@ export default function Product() {
         .catch((error) => {
           console.log(error);
         });
-      alert("Item was successfully added.");
+      toast.success("Item was successfully added.", {
+        position: toast.POSITION.TOP_CENTER,
+      });
     } else {
-      alert("You must be logged in order to perform this action!");
+      toast.error("You must be logged in order to perform this action!", {
+        position: toast.POSITION.TOP_CENTER,
+      });
     }
   }
   function removeFromFavorite() {
@@ -114,9 +119,13 @@ export default function Product() {
         .catch((error) => {
           console.log(error);
         });
-      alert("Item was successfully added.");
+      toast.success("Item was successfully added to cart.", {
+        position: toast.POSITION.TOP_CENTER,
+      });
     } else {
-      alert("You must be logged in order to perform this action!");
+      toast.error("You must be logged in order to perform this action!", {
+        position: toast.POSITION.TOP_CENTER,
+      });
     }
   }
 

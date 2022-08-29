@@ -17,7 +17,12 @@ export default function WorkerPaid() {
             params: { status: status },
           }
         );
-        setOrders(resp.data);
+        const unsortedOrders = resp.data;
+        unsortedOrders.sort(function (a, b) {
+          return new Date(a.date) - new Date(b.date);
+        });
+
+        setOrders(unsortedOrders);
         console.log(resp.data);
       } catch (err) {
         console.log(err);

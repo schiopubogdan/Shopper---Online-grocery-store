@@ -32,6 +32,7 @@ public class UserRoleServiceImpl implements UserRoleService {
     @Override
     public UserRole save(UserRole userRole) throws ExecutionException, InterruptedException {
         UserRole user =  userRoleRepository.save(userRole);
+        user.setCreatedAt(new Date());
         FavoriteList favoriteList = new FavoriteList();
         favoriteList.setProducts(new ArrayList<>());
         ShoppingList shoppingList = new ShoppingList();
@@ -41,6 +42,7 @@ public class UserRoleServiceImpl implements UserRoleService {
         favoriteList.setUserId(user.getId());
         shoppingList.setUserId(user.getId());
         storageList.setUserId(user.getId());
+        userRoleRepository.updateById(user);
         favoriteListRepository.save(favoriteList);
         shoppingListRepository.save(shoppingList);
         storageListRepository.save(storageList);

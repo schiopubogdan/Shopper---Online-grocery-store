@@ -1,8 +1,9 @@
 import React from "react";
 import { Link } from "react-router-dom";
-import { Button } from "react-bootstrap";
+import { Button, Toast } from "react-bootstrap";
 import { Rating, Typography } from "@mui/material";
 import axios from "axios";
+import { toast } from "react-toastify";
 
 export default function ProductCard(props) {
   function addToFavorites() {
@@ -19,15 +20,19 @@ export default function ProductCard(props) {
           if (res.data === "") {
             console.log("X");
           } else {
-            console.log("Product added");
+            //success
           }
         })
         .catch((error) => {
           console.log(error);
         });
-      alert("Item was successfully added.");
+      toast.success("Item was successfully added.", {
+        position: toast.POSITION.TOP_CENTER,
+      });
     } else {
-      alert("You must be logged in order to perform this action!");
+      toast.error("You must be logged in order to perform this action!", {
+        position: toast.POSITION.TOP_CENTER,
+      });
     }
   }
   function addToCart() {
@@ -51,9 +56,13 @@ export default function ProductCard(props) {
         .catch((error) => {
           console.log(error);
         });
-      alert("Item was successfully added.");
+      toast.success("Item was successfully added to cart.", {
+        position: toast.POSITION.TOP_CENTER,
+      });
     } else {
-      alert("You must be logged in order to perform this action!");
+      toast.error("You must be logged in order to perform this action!", {
+        position: toast.POSITION.TOP_CENTER,
+      });
     }
   }
   return (

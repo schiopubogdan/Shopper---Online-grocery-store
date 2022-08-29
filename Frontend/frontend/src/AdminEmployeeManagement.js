@@ -61,66 +61,129 @@ export default function AdminEmployeeManagement() {
     alert("Employee successfully created");
     window.location.reload();
   }
+  const handleDeleteClick = (userId) => {
+    axios
+      .delete(`http://localhost:8080/api/user?id=${userId}`)
+      .then((res) => {
+        if (res.data === "") {
+          console.log("X");
+        } else {
+          console.log("Employee deleted");
+        }
+      })
+      .catch((error) => {
+        console.log(error);
+      });
+    alert("Employee account was successfully deleted.");
+    window.location.reload();
+  };
   if (workers === null || drivers === null) {
     return <div>No workers yet</div>;
   }
   return (
     <div>
       <AdminNavbar />
-      <h1>DRIVERS</h1>
-      <br></br>
-      <table>
-        <thead>
-          <tr>
-            <th>#</th>
-            <th>ID</th>
-            <th>EMAIL</th>
-            <th>ROLE</th>
-            <th>ACTIONS</th>
-          </tr>
-        </thead>
-        <tbody>
-          {drivers.map((driver, key) => (
-            <tr>
-              <td>{key + 1}</td>
-              <td>{driver.id}</td>
-              <td>{driver.email}</td>
-              <td>{driver.role}</td>
-              <td>
-                <button>DELETE</button>
-              </td>
-            </tr>
-          ))}
-        </tbody>
-        <tfoot>Total number of drivers: {drivers.length}</tfoot>
-      </table>
-      <h1>WORKERS</h1>
-      <br></br>
-      <table>
-        <thead>
-          <tr>
-            <th>#</th>
-            <th>ID</th>
-            <th>EMAIL</th>
-            <th>ROLE</th>
-            <th>ACTIONS</th>
-          </tr>
-        </thead>
-        <tbody>
-          {workers.map((worker, key) => (
-            <tr>
-              <td>{key + 1}</td>
-              <td>{worker.id}</td>
-              <td>{worker.email}</td>
-              <td>{worker.role}</td>
-              <td>
-                <button>DELETE</button>
-              </td>
-            </tr>
-          ))}
-        </tbody>
-        <tfoot>Total number of workers: {workers.length}</tfoot>
-      </table>
+      <div class="accordion" id="accordionPanelsStayOpenExample">
+        <div class="accordion-item">
+          <h2 class="accordion-header" id="panelsStayOpen-headingOne">
+            <button
+              class="accordion-button"
+              type="button"
+              data-bs-toggle="collapse"
+              data-bs-target="#panelsStayOpen-collapseOne"
+              aria-expanded="true"
+              aria-controls="panelsStayOpen-collapseOne"
+            >
+              DRIVERS
+            </button>
+          </h2>
+          <div
+            id="panelsStayOpen-collapseOne"
+            class="accordion-collapse collapse show"
+            aria-labelledby="panelsStayOpen-headingOne"
+          >
+            <div class="accordion-body">
+              <table>
+                <thead>
+                  <tr>
+                    <th>#</th>
+                    <th>ID</th>
+                    <th>EMAIL</th>
+                    <th>ROLE</th>
+                    <th>ACTIONS</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  {drivers.map((driver, key) => (
+                    <tr>
+                      <td>{key + 1}</td>
+                      <td>{driver.id}</td>
+                      <td>{driver.email}</td>
+                      <td>{driver.role}</td>
+                      <td>
+                        <button onClick={() => handleDeleteClick(driver.id)}>
+                          DELETE
+                        </button>
+                      </td>
+                    </tr>
+                  ))}
+                </tbody>
+                <tfoot>Total number of drivers: {drivers.length}</tfoot>
+              </table>
+            </div>
+          </div>
+        </div>
+        <div class="accordion-item">
+          <h2 class="accordion-header" id="panelsStayOpen-headingTwo">
+            <button
+              class="accordion-button collapsed"
+              type="button"
+              data-bs-toggle="collapse"
+              data-bs-target="#panelsStayOpen-collapseTwo"
+              aria-expanded="false"
+              aria-controls="panelsStayOpen-collapseTwo"
+            >
+              WORKERS
+            </button>
+          </h2>
+          <div
+            id="panelsStayOpen-collapseTwo"
+            class="accordion-collapse collapse"
+            aria-labelledby="panelsStayOpen-headingTwo"
+          >
+            <div class="accordion-body">
+              <table>
+                <thead>
+                  <tr>
+                    <th>#</th>
+                    <th>ID</th>
+                    <th>EMAIL</th>
+                    <th>ROLE</th>
+                    <th>ACTIONS</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  {workers.map((worker, key) => (
+                    <tr>
+                      <td>{key + 1}</td>
+                      <td>{worker.id}</td>
+                      <td>{worker.email}</td>
+                      <td>{worker.role}</td>
+                      <td>
+                        <button onClick={() => handleDeleteClick(worker.id)}>
+                          DELETE
+                        </button>
+                      </td>
+                    </tr>
+                  ))}
+                </tbody>
+                <tfoot>Total number of workers: {workers.length}</tfoot>
+              </table>
+            </div>
+          </div>
+        </div>
+      </div>
+
       <br></br>
       <h1>ADD EMPLOYEE</h1>
       <form className="row g-3" onSubmit={handleAddEmployeeFormSubmit}>

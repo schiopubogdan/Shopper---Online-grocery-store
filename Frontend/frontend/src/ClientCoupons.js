@@ -4,6 +4,7 @@ import axios from "axios";
 import ClientCoupon from "./ClientCoupon";
 import RedeemCoupon from "./RedeemCoupon";
 import Footer from "./Footer";
+import { toast } from "react-toastify";
 
 export default function ClientCoupons() {
   const [coupons, setCoupons] = useState(null);
@@ -53,7 +54,9 @@ export default function ClientCoupons() {
       .catch((error) => {
         console.log(error);
       });
-    alert("Coupon redeemed");
+    toast.success("Coupon redeemed successfully.", {
+      position: toast.POSITION.TOP_CENTER,
+    });
   }
   function redeemCoupon15() {
     let clientId = localStorage.getItem("userId");
@@ -75,7 +78,9 @@ export default function ClientCoupons() {
       .catch((error) => {
         console.log(error);
       });
-    alert("Coupon redeemed");
+    toast.success("Coupon redeemed successfully.", {
+      position: toast.POSITION.TOP_CENTER,
+    });
   }
   function redeemCoupon20() {
     let clientId = localStorage.getItem("userId");
@@ -98,7 +103,9 @@ export default function ClientCoupons() {
         console.log(error);
       });
 
-    alert("Coupon redeemed");
+    toast.success("Coupon redeemed successfully.", {
+      position: toast.POSITION.TOP_CENTER,
+    });
   }
   if (coupons === null || client === null) {
     return <div>No coupons available</div>;

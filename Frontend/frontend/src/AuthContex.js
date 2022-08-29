@@ -8,6 +8,7 @@ import {
 import React, { useContext, useState, useEffect } from "react";
 import { auth } from "./firebase-config";
 import { useNavigate } from "react-router-dom";
+import { toast } from "react-toastify";
 const AuthContex = React.createContext();
 
 export function useAuth() {
@@ -68,13 +69,17 @@ export function AuthProvider({ children }) {
     } catch (error) {
       console.log(error.message);
       if (error.message === "Firebase: Error (auth/email-already-in-use).") {
-        alert("Email already used. Try another one");
+        toast.error("Email already used. Try another one", {
+          position: toast.POSITION.TOP_CENTER,
+        });
       }
       if (
         error.message ===
         "Firebase: Password should be at least 6 characters (auth/weak-password)."
       ) {
-        alert("Password must be at least 6 characters");
+        toast.error("Password must be at least 6 characters!", {
+          position: toast.POSITION.TOP_CENTER,
+        });
       }
     }
   }
@@ -99,7 +104,7 @@ export function AuthProvider({ children }) {
             }
             if (role === "admin") {
               localStorage.setItem("role", "admin");
-              navigate("/admin");
+              navigate("/admin-prod-man");
             }
             if (role === "worker") {
               localStorage.setItem("role", "worker");
@@ -116,6 +121,9 @@ export function AuthProvider({ children }) {
         });
     } catch (error) {
       console.log(error.message);
+      toast.error("Wrong credentials!", {
+        position: toast.POSITION.TOP_CENTER,
+      });
     }
   }
 

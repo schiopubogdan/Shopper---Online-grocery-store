@@ -8,4 +8,5 @@ import lombok.Setter;
 public class AdminAnalyticsDTO {
     private int[] orders;
     private double[] incomes;
+    private int[] users;
 }
