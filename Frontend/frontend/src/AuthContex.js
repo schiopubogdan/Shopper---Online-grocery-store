@@ -19,6 +19,7 @@ export function AuthProvider({ children }) {
   const [currentUser, setCurrentUser] = useState();
   const [loading, setLoading] = useState(true);
   const navigate = useNavigate();
+  const [role, setRole] = useState();
 
   async function registerEmployee(email, password, role) {
     try {
@@ -101,18 +102,22 @@ export function AuthProvider({ children }) {
             if (role === "client") {
               localStorage.setItem("role", "client");
               navigate("/home");
+              setRole("client");
             }
             if (role === "admin") {
               localStorage.setItem("role", "admin");
               navigate("/admin-prod-man");
+              setRole("admin");
             }
             if (role === "worker") {
               localStorage.setItem("role", "worker");
               navigate("/worker-paid");
+              setRole("worker");
             }
             if (role === "driver") {
               localStorage.setItem("role", "driver");
               navigate("/worker-ready");
+              setRole("driver");
             }
           }
         })
@@ -151,6 +156,7 @@ export function AuthProvider({ children }) {
     login,
     logout,
     resetPassword,
+    role,
   };
   return (
     <AuthContex.Provider value={value}>

@@ -21,7 +21,6 @@ import WorkerPaid from "./WorkerPaid";
 import WorkerInprogress from "./WorkerInprogress";
 import WorkerReady from "./WorkerReady";
 import WorkerDelivered from "./WorkerDelivered";
-import Admin from "./Admin";
 import AdminAnalytics from "./AdminAnalytics";
 import AdminProductManagement from "./AdminProductManagement";
 import AdminEmployeeManagement from "./AdminEmployeeManagement";
@@ -47,7 +46,6 @@ function App() {
     <AuthProvider>
       <Routes>
         <Route exact path="/home" element={<Home />} />
-
         {/* <Route exact path="/homeadmin" element={<PrivateRoute />}>
           <Route exact path="/homeadmin" element={<HomeAdmin />} />
         </Route> */}
@@ -63,11 +61,25 @@ function App() {
         <Route exact path="/history" element={<ClientHistory />} />
         <Route exact path="/coupons" element={<ClientCoupons />} />
         <Route exact path="/info" element={<ClientAnalytics />} />
-        <Route exact path="/worker-paid" element={<WorkerPaid />} />
-        <Route exact path="/worker-inprogress" element={<WorkerInprogress />} />
-        <Route exact path="/worker-ready" element={<WorkerReady />} />
-        <Route exact path="/worker-delivered" element={<WorkerDelivered />} />
-        <Route exact path="/admin" element={<Admin />} />
+
+        <Route exact path="/worker-paid" element={<PrivateRoute />}>
+          <Route exact path="/worker-paid" element={<WorkerPaid />} />
+        </Route>
+        <Route exact path="/worker-inprogress" element={<PrivateRoute />}>
+          {" "}
+          <Route
+            exact
+            path="/worker-inprogress"
+            element={<WorkerInprogress />}
+          />
+        </Route>
+        <Route exact path="/worker-ready" element={<PrivateRoute />}>
+          <Route exact path="/worker-ready" element={<WorkerReady />} />
+        </Route>
+        <Route exact path="/worker-delivered" element={<PrivateRoute />}>
+          <Route exact path="/worker-delivered" element={<WorkerDelivered />} />
+        </Route>
+
         <Route exact path="/payment" element={<PaymentPage />} />
         <Route exact path="/alcohol" element={<Alcohol />} />
         <Route exact path="/beauty" element={<Beauty />} />
@@ -82,17 +94,23 @@ function App() {
         <Route exact path="/snacks" element={<Snacks />} />
         <Route exact path="/sweets" element={<Sweets />} />
         <Route exact path="/vegetables" element={<Vegetables />} />
-        <Route
-          exact
-          path="/admin-prod-man"
-          element={<AdminProductManagement />}
-        />
-        <Route
-          exact
-          path="/admin-empl-man"
-          element={<AdminEmployeeManagement />}
-        />
-        <Route exact path="/admin-analytics" element={<AdminAnalytics />} />
+        <Route exact path="/admin-prod-man" element={<PrivateRoute />}>
+          <Route
+            exact
+            path="/admin-prod-man"
+            element={<AdminProductManagement />}
+          />{" "}
+        </Route>
+        <Route exact path="/admin-empl-man" element={<PrivateRoute />}>
+          <Route
+            exact
+            path="/admin-empl-man"
+            element={<AdminEmployeeManagement />}
+          />{" "}
+        </Route>
+        <Route exact path="/admin-analytics" element={<PrivateRoute />}>
+          <Route exact path="/admin-analytics" element={<AdminAnalytics />} />
+        </Route>
       </Routes>
       <ToastContainer />
 

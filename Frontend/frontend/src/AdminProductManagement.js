@@ -129,7 +129,7 @@ export default function AdminProductManagement() {
         setOthers(othersP);
         setPantry(pantryP);
         setSnacks(snacksP);
-        setSwets(sweets);
+        setSwets(sweetsP);
         setVegetables(vegetablesP);
       } catch (err) {
         console.log(err);

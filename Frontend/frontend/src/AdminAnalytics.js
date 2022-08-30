@@ -347,7 +347,7 @@ export default function AdminAnalytics() {
             <div class="accordion-body">
               <div className="admin-analytics-chart-div">
                 <BarChart
-                  width={1450}
+                  width={1300}
                   height={400}
                   data={ordersData}
                   margin={{ top: 5, right: 20, bottom: 5, left: 0 }}
@@ -383,7 +383,7 @@ export default function AdminAnalytics() {
             <div class="accordion-body">
               <div className="admin-analytics-chart-div">
                 <BarChart
-                  width={1450}
+                  width={1300}
                   height={400}
                   data={incomeData}
                   margin={{ top: 5, right: 20, bottom: 5, left: 0 }}
@@ -419,7 +419,7 @@ export default function AdminAnalytics() {
             <div class="accordion-body">
               <div className="admin-analytics-chart-div">
                 <BarChart
-                  width={1450}
+                  width={1300}
                   height={400}
                   data={usersData}
                   margin={{ top: 5, right: 20, bottom: 5, left: 0 }}

@@ -193,7 +193,7 @@ export default function Navbar() {
         <div>
           <nav className="navbar navbar-expand-lg navbar">
             <div className="container-fluid">
-              <a className="navbar-brand fw-bold fs-4" href="#">
+              <a className="navbar-brand fw-bold fs-4" href="/home">
                 SHOPPER
               </a>
               <button
