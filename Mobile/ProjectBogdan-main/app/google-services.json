@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "872500156627",
+    "project_id": "licentav3-dd9db",
+    "storage_bucket": "licentav3-dd9db.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:872500156627:android:353a71c8a4df86f894dc26",
+        "android_client_info": {
+          "package_name": "com.example.projectbogdan"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "872500156627-10o6cj782ader5fvmer5h4vutonqq6ic.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDfp_XvBjutPKOjG5JvjyLPLt2_nTKahZc"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "872500156627-10o6cj782ader5fvmer5h4vutonqq6ic.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
